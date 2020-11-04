@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c78dc28f-e505-4c51-941a-3c07b1d0e4d1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/src/main/java/com/leo/admin/controller/AdminLoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/src/main/java/com/leo/admin/controller/BaseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin/src/main/java/com/leo/admin/pojo/MsaUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/src/main/java/com/leo/admin/mapper/MasUserMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/src/main/java/com/leo/admin/mapper/MsaUserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/src/main/java/com/leo/admin/service/MsaUserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/src/main/java/com/leo/admin/service/impl/MsaUserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/admin/src/main/resources/static/jdbc.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/admin/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin/src/main/java/com/leo/admin/AdminApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/main/java/com/leo/admin/AdminApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/src/main/java/com/leo/admin/controller/AdminLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/main/java/com/leo/admin/controller/AdminLoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/src/main/java/com/leo/admin/pojo/MsaUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/main/java/com/leo/admin/pojo/MsaUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/admin/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,8 +36,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
+        <option value="FxmlFile" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -74,7 +75,18 @@
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.leo.admin.service.impl" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\leo\LearningMaterials\IDEAProject\MiaoSha\admin\src\main\resources\static" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.leo.admin.service" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="AdminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -90,17 +102,7 @@
       <list>
         <serviceView>
           <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:MiaoShaAdmin" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="root:MiaoShaAdmin" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@46ed1e91" type="9fbbdea:ServiceModel$ServiceNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </treeState>
         </serviceView>
@@ -118,66 +120,99 @@
       <option name="presentableId" value="Default" />
       <updated>1604048051814</updated>
       <workItem from="1604048054495" duration="5622000" />
-      <workItem from="1604325975927" duration="5123000" />
+      <workItem from="1604325975927" duration="5217000" />
+      <workItem from="1604488515186" duration="5018000" />
     </task>
+    <task id="LOCAL-00001" summary="Hello World测试">
+      <created>1604333443460</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1604333443460</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Hello World测试" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hello World测试" />
   </component>
   <component name="WindowStateProjectService">
     <state x="256" y="16" key="#Custom_Plugin_Repositories" timestamp="1604328016573">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="256" y="16" key="#Custom_Plugin_Repositories/0.0.1366.738@0.0.1366.738" timestamp="1604328016573" />
-    <state x="279" y="32" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604327248277">
+    <state x="279" y="32" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604492868260">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="279" y="32" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1604327248277" />
+    <state x="279" y="32" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1604492868260" />
+    <state x="385" y="173" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1604494692250">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="385" y="173" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.738@0.0.1366.738" timestamp="1604494692250" />
+    <state x="492" y="80" key="#com.intellij.ide.util.MemberChooser" timestamp="1604494000287">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="492" y="80" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1604494000287" />
+    <state x="417" y="117" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1604493826769">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="417" y="117" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1604493826769" />
+    <state x="280" y="0" key="CommitChangelistDialog2" timestamp="1604333440626">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="280" y="0" key="CommitChangelistDialog2/0.0.1366.738@0.0.1366.738" timestamp="1604333440626" />
     <state x="444" y="113" key="FileChooserDialogImpl" timestamp="1604053403880">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="444" y="113" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1604053403880" />
-    <state width="1323" height="224" key="GridCell.Tab.0.bottom" timestamp="1604333396261">
+    <state width="1323" height="224" key="GridCell.Tab.0.bottom" timestamp="1604489129745">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="224" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1604333396261" />
-    <state width="1323" height="224" key="GridCell.Tab.0.center" timestamp="1604333396261">
+    <state width="1323" height="224" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1604489129745" />
+    <state width="1323" height="224" key="GridCell.Tab.0.center" timestamp="1604489129745">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="224" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1604333396261" />
-    <state width="1323" height="224" key="GridCell.Tab.0.left" timestamp="1604333396261">
+    <state width="1323" height="224" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1604489129745" />
+    <state width="1323" height="224" key="GridCell.Tab.0.left" timestamp="1604489129745">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="224" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1604333396261" />
-    <state width="1323" height="224" key="GridCell.Tab.0.right" timestamp="1604333396261">
+    <state width="1323" height="224" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1604489129745" />
+    <state width="1323" height="224" key="GridCell.Tab.0.right" timestamp="1604489129745">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="224" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1604333396261" />
-    <state width="1323" height="224" key="GridCell.Tab.1.bottom" timestamp="1604333396262">
+    <state width="1323" height="224" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1604489129745" />
+    <state width="1323" height="224" key="GridCell.Tab.1.bottom" timestamp="1604489129745">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="224" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1604333396262" />
-    <state width="1323" height="224" key="GridCell.Tab.1.center" timestamp="1604333396262">
+    <state width="1323" height="224" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1604489129745" />
+    <state width="1323" height="224" key="GridCell.Tab.1.center" timestamp="1604489129745">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="224" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1604333396262" />
-    <state width="1323" height="224" key="GridCell.Tab.1.left" timestamp="1604333396262">
+    <state width="1323" height="224" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1604489129745" />
+    <state width="1323" height="224" key="GridCell.Tab.1.left" timestamp="1604489129745">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="224" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1604333396262" />
-    <state width="1323" height="224" key="GridCell.Tab.1.right" timestamp="1604333396262">
+    <state width="1323" height="224" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1604489129745" />
+    <state width="1323" height="224" key="GridCell.Tab.1.right" timestamp="1604489129745">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="224" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1604333396262" />
-    <state x="217" y="29" key="Maven.ArtifactSearchDialog" timestamp="1604328308379">
+    <state width="1323" height="224" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1604489129745" />
+    <state x="217" y="29" key="Maven.ArtifactSearchDialog" timestamp="1604494122193">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="217" y="29" key="Maven.ArtifactSearchDialog/0.0.1366.738@0.0.1366.738" timestamp="1604328308379" />
-    <state x="167" y="0" key="SettingsEditor" timestamp="1604328054270">
+    <state x="217" y="29" key="Maven.ArtifactSearchDialog/0.0.1366.738@0.0.1366.738" timestamp="1604494122193" />
+    <state x="167" y="0" key="SettingsEditor" timestamp="1604488887461">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="167" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1604328054270" />
+    <state x="167" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1604488887461" />
+    <state x="279" y="107" key="Vcs.Push.Dialog.v2" timestamp="1604333449301">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="279" y="107" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1604333449301" />
     <state x="458" y="101" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1604328247700">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -186,5 +221,9 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="170" y="92" width="1079" height="581" key="new project wizard/0.0.1366.738@0.0.1366.738" timestamp="1604053128363" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1604492881553">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1604492881553" />
   </component>
 </project>
