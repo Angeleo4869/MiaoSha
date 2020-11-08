@@ -10,9 +10,13 @@
         <module name="admin" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="MiaoSha_Admin" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="MiaoSha_Admin" options="-parameters" />
       <module name="admin" options="-parameters" />
     </option>
   </component>

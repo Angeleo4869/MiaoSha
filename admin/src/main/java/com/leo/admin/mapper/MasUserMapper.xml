@@ -18,4 +18,8 @@
         and msa_user_password = #{password,jdbcType=VARCHAR}
     </select>
 
+    <select id="selectAll" resultType="com.leo.admin.pojo.MsaUser">
+        select * from msa_user
+    </select>
+
 </mapper>
