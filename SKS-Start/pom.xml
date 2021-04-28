@@ -22,25 +22,25 @@
 
         <dependency>
             <groupId>com.angeleo.sks</groupId>
-            <artifactId>Core</artifactId>
+            <artifactId>core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>com.angeleo.sks</groupId>
-            <artifactId>Db</artifactId>
+            <artifactId>db</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>com.angeleo.sks</groupId>
-            <artifactId>Wx</artifactId>
+            <artifactId>wx</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>com.angeleo.sks</groupId>
-            <artifactId>Admin</artifactId>
+            <artifactId>admin</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
