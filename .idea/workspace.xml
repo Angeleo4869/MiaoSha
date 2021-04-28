@@ -65,29 +65,29 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Docker" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Docker/db/init-sql" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="Docker" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.angeleo.sks.core" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem\Docker" />
-      <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem\Docker\SecondsKillSystem" />
-      <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem\SKS-DB\src\main\java\com\angeleo\sks\db\pojo" />
-      <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem\SKS-DB\src\main\java\com\angeleo\sks\db\util" />
-      <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem\SKS-Start\src\main\resources" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem" />
       <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem\SKS-WX\src" />
       <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem\SKS-DB\src\main\resources\com\angeleo\sks\db" />
       <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem\SKS-DB\src\main\resources" />
       <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem\SKS-DB\src\main\java\com\angeleo\sks\db" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.angeleo.sks.core" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem\Docker\db\init-sql" />
+      <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem\Docker" />
+      <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem\Docker\SecondsKillSystem" />
+      <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem\SKS-DB\src\main\java\com\angeleo\sks\db\pojo" />
+      <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem\SKS-DB\src\main\java\com\angeleo\sks\db\util" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -105,7 +105,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Docker.SecondsKillSystem/DockerFile">
+  <component name="RunManager" selected="Spring Boot.StartApplication">
     <configuration name="DbConfigTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="SKS-DB" />
       <extension name="coverage">
@@ -188,14 +188,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SecondsKillSystem/DockerFile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+    <configuration name="SecondsKillSystem/DockerFile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker@42.192.71.179">
       <deployment type="dockerfile">
         <settings>
           <option name="buildCliOptions" value="" />
           <option name="command" value="" />
-          <option name="containerName" value="" />
+          <option name="containerName" value="SecondsKillSystem" />
           <option name="entrypoint" value="" />
-          <option name="imageTag" value="" />
+          <option name="imageTag" value="sks:0.1.0" />
+          <option name="portBindings">
+            <list>
+              <DockerPortBindingImpl>
+                <option name="containerPort" value="8080" />
+                <option name="hostPort" value="8080" />
+              </DockerPortBindingImpl>
+              <DockerPortBindingImpl>
+                <option name="containerPort" value="9527" />
+                <option name="hostPort" value="9527" />
+              </DockerPortBindingImpl>
+            </list>
+          </option>
           <option name="commandLineOptions" value="" />
           <option name="sourceFilePath" value="Docker/SecondsKillSystem/DockerFile" />
         </settings>
@@ -203,6 +215,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Docker.SecondsKillSystem/DockerFile" />
       <item itemvalue="JUnit.DbTest.test" />
       <item itemvalue="JUnit.DbConfigTest.test" />
       <item itemvalue="JUnit.MapperReturnTest.test" />
@@ -210,7 +223,6 @@
       <item itemvalue="Spring Boot.StartApplication" />
       <item itemvalue="Spring Boot.AdminApplication" />
       <item itemvalue="Spring Boot.DbApplicationTests" />
-      <item itemvalue="Docker.SecondsKillSystem/DockerFile" />
     </list>
     <recent_temporary>
       <list>
@@ -228,12 +240,7 @@
         <serviceView>
           <option name="contentProportion" value="0.19165379" />
           <treeState>
-            <expand>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Spring Boot" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </treeState>
         </serviceView>
@@ -290,7 +297,8 @@
       <workItem from="1619351470501" duration="2581000" />
       <workItem from="1619417878107" duration="3350000" />
       <workItem from="1619427261077" duration="31572000" />
-      <workItem from="1619575857241" duration="2026000" />
+      <workItem from="1619575857241" duration="11976000" />
+      <workItem from="1619592114227" duration="4272000" />
     </task>
     <servers />
   </component>
@@ -298,6 +306,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="279" y="29" key="#Docker" timestamp="1619587405145">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="279" y="29" key="#Docker/0.0.1366.738@0.0.1366.738" timestamp="1619587405145" />
     <state x="279" y="29" key="#Inspections" timestamp="1616427051813">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -318,15 +330,15 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="395" y="0" key="#SecondsKillSystem/DockerFile/0.0.1366.738@0.0.1366.738" timestamp="1619576421146" />
-    <state x="432" y="137" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1618378972353">
-      <screen x="0" y="0" width="1920" height="1050" />
-    </state>
-    <state x="432" y="137" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1366.0.1366.738/0.0.1920.1050@0.0.1920.1050" timestamp="1618378972353" />
-    <state x="125" y="32" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1616521853461" />
-    <state x="420" y="173" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1619576399035">
+    <state x="184" y="52" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1619589511288">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="420" y="173" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.738@0.0.1366.738" timestamp="1619576399035" />
+    <state x="432" y="137" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1366.0.1366.738/0.0.1920.1050@0.0.1920.1050" timestamp="1618378972353" />
+    <state x="184" y="52" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1619589511288" />
+    <state x="420" y="173" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1619582048273">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="420" y="173" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.738@0.0.1366.738" timestamp="1619582048273" />
     <state x="1039" y="331" key="#com.intellij.ide.util.MemberChooser" timestamp="1617980212404">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -361,26 +373,26 @@
     </state>
     <state x="656" y="174" key="FileChooserDialogImpl/-1366.0.1366.738/0.0.1920.1050@0.0.1920.1050" timestamp="1618378968179" />
     <state x="467" y="122" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1616522385699" />
-    <state width="1323" height="122" key="GridCell.Tab.0.bottom" timestamp="1619540565905">
+    <state width="1323" height="105" key="GridCell.Tab.0.bottom" timestamp="1619590473656">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1044" height="176" key="GridCell.Tab.0.bottom/-1366.0.1366.738/0.0.1920.1050@0.0.1920.1050" timestamp="1618497005446" />
-    <state width="1323" height="122" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1619540565905" />
-    <state width="1323" height="122" key="GridCell.Tab.0.center" timestamp="1619540565905">
+    <state width="1323" height="105" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1619590473656" />
+    <state width="1323" height="105" key="GridCell.Tab.0.center" timestamp="1619590473656">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1044" height="176" key="GridCell.Tab.0.center/-1366.0.1366.738/0.0.1920.1050@0.0.1920.1050" timestamp="1618497005446" />
-    <state width="1323" height="122" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1619540565905" />
-    <state width="1323" height="122" key="GridCell.Tab.0.left" timestamp="1619540565905">
+    <state width="1323" height="105" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1619590473656" />
+    <state width="1323" height="105" key="GridCell.Tab.0.left" timestamp="1619590473656">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1044" height="176" key="GridCell.Tab.0.left/-1366.0.1366.738/0.0.1920.1050@0.0.1920.1050" timestamp="1618497005446" />
-    <state width="1323" height="122" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1619540565905" />
-    <state width="1323" height="122" key="GridCell.Tab.0.right" timestamp="1619540565905">
+    <state width="1323" height="105" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1619590473656" />
+    <state width="1323" height="105" key="GridCell.Tab.0.right" timestamp="1619590473656">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1044" height="176" key="GridCell.Tab.0.right/-1366.0.1366.738/0.0.1920.1050@0.0.1920.1050" timestamp="1618497005446" />
-    <state width="1323" height="122" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1619540565905" />
+    <state width="1323" height="105" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1619590473656" />
     <state width="1045" height="170" key="GridCell.Tab.1.bottom" timestamp="1619540565905">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -413,15 +425,19 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="235" y="68" key="NewModule_or_Project.wizard/0.0.1366.738@0.0.1366.738" timestamp="1616522387407" />
-    <state x="75" y="0" key="SettingsEditor" timestamp="1619535794071">
+    <state x="75" y="0" key="SettingsEditor" timestamp="1619588632055">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="455" y="176" key="SettingsEditor/-1366.0.1366.738/0.0.1920.1050@0.0.1920.1050" timestamp="1618378899838" />
-    <state x="75" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1619535794071" />
+    <state x="75" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1619588632055" />
     <state width="498" height="488" key="SwitcherDM" timestamp="1616515779816">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="498" height="488" key="SwitcherDM/0.0.1366.738@0.0.1366.738" timestamp="1616515779816" />
+    <state x="411" y="118" key="com.intellij.docker.deployment.ui.DockerPortBindingsField.v173.dialogSize" timestamp="1619588836360">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="411" y="118" key="com.intellij.docker.deployment.ui.DockerPortBindingsField.v173.dialogSize/0.0.1366.738@0.0.1366.738" timestamp="1619588836360" />
     <state x="417" y="135" key="extract.method.dialog" timestamp="1619503534841">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

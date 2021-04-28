@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="SKS-Core" />
         <module name="SKS-WX-API" />
         <module name="SKS-Admin-API" />
         <module name="SKS-DB" />
         <module name="SKS-Start" />
+        <module name="SKS-Core" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
