@@ -3,10 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.angeleo.sks</groupId>
-    <artifactId>Db</artifactId>
+    <artifactId>db</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>SKS-Db</name>
+    <name>SKS-DB</name>
     <description>Demo project for Spring Boot</description>
     <parent>
         <artifactId>SecondsKillSystem</artifactId>
@@ -65,7 +65,7 @@
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
-                        <version>5.1.47</version>
+                        <version>${mysql.version}</version>
                     </dependency>
 
                     <dependency>
