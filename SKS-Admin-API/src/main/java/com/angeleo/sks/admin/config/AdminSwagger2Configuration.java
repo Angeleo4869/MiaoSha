@@ -26,7 +26,7 @@ public class AdminSwagger2Configuration {
                 .groupName("admin")
                 .apiInfo(adminApiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.angeleo.sks.admin.web"))
+                .apis(RequestHandlerSelectors.basePackage("com.angeleo.sks.admin.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -36,7 +36,6 @@ public class AdminSwagger2Configuration {
                 .title("sks-admin API")
                 .description("leo嘚管理后台API")
                 .termsOfServiceUrl("https://github.com/Angeleo4869/E-commerce-Promotion")
-                .contact("https://github.com/Angeleo4869/E-commerce-Promotion")
                 .version("1.0")
                 .build();
     }
