@@ -7,10 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="SKS-Core" />
-        <module name="SKS-WX" />
+        <module name="SKS-WX-API" />
+        <module name="SKS-Admin-API" />
         <module name="SKS-DB" />
         <module name="SKS-Start" />
-        <module name="SKS-Admin" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -20,11 +20,11 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="SKS-Admin" options="-parameters" />
+      <module name="SKS-Admin-API" options="-parameters" />
       <module name="SKS-Core" options="-parameters" />
       <module name="SKS-DB" options="-parameters" />
       <module name="SKS-Start" options="-parameters" />
-      <module name="SKS-WX" options="-parameters" />
+      <module name="SKS-WX-API" options="-parameters" />
       <module name="SecondsKillSystem" options="" />
       <module name="Wx" options="-parameters" />
     </option>

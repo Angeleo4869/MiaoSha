@@ -65,7 +65,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Docker/SecondsKillSystem" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Docker" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -76,11 +76,11 @@
       <recent name="com.angeleo.sks.core" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem\Docker" />
       <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem\Docker\SecondsKillSystem" />
       <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem\SKS-DB\src\main\java\com\angeleo\sks\db\pojo" />
       <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem\SKS-DB\src\main\java\com\angeleo\sks\db\util" />
       <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem\SKS-Start\src\main\resources" />
-      <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem\SKS-WX\src\test\java\com\angeleo\sks\wx" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\leo\LearningMaterials\IDEAProject\SecondsKillSystem" />
@@ -155,7 +155,7 @@
       </method>
     </configuration>
     <configuration name="AdminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="SKS-Admin" />
+      <module name="SKS-Admin-API" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.angeleo.sks.admin.AdminApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -182,7 +182,7 @@
       </method>
     </configuration>
     <configuration name="WXApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="SKS-WX" />
+      <module name="SKS-WX-API" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.angeleo.sks.wx.WXApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -290,7 +290,7 @@
       <workItem from="1619351470501" duration="2581000" />
       <workItem from="1619417878107" duration="3350000" />
       <workItem from="1619427261077" duration="31572000" />
-      <workItem from="1619575857241" duration="1548000" />
+      <workItem from="1619575857241" duration="2026000" />
     </task>
     <servers />
   </component>
