@@ -9,8 +9,8 @@ Page({
     canShare: false,
     id: 0,
     goods: {},
-    SanpUp: [], //该商品支持的秒杀规格
-    SanpUpLink: {}, //参与的秒杀
+    SnapUp: [], //该商品支持的秒杀规格
+    SnapUpLink: {}, //参与的秒杀
     attribute: [],
     issueList: [],
     comment: [],
@@ -29,7 +29,7 @@ Page({
     openShare: false,
     collect: false,
     shareImage: '',
-    isSanpUp: false, //标识是否是一个参秒杀买
+    isSnapUp: false, //标识是否是一个参秒杀买
     soldout: false,
     canWrite: false, //用户是否获取了保存相册的权限
   },
@@ -110,14 +110,14 @@ Page({
   },
 
   //从分享的秒杀进入
-  getSanpUpInfo: function(SanpUpId) {
+  getSnapUpInfo: function(SnapUpId) {
     let that = this;
-    util.request(api.SanpUpJoin, {
-      SanpUpId: SanpUpId
+    util.request(api.SnapUpJoin, {
+      SnapUpId: SnapUpId
     }).then(function(res) {
       if (res.errno === 0) {
         that.setData({
-          SanpUpLink: res.data.SanpUp,
+          SnapUpLink: res.data.SnapUp,
           id: res.data.goods.id
         });
         //获取商品详情
@@ -169,7 +169,7 @@ Page({
           userHasCollect: res.data.userHasCollect,
           shareImage: res.data.shareImage,
           checkedSpecPrice: res.data.info.retailPrice,
-          SanpUp: res.data.SanpUp,
+          SnapUp: res.data.SnapUp,
           canShare: res.data.share,
           //选择规格时，默认展示第一张图片
           tmpPicUrl: _tmpPicUrl
@@ -177,17 +177,17 @@ Page({
 
         
         //如果是通过分享的秒杀参加秒杀，则秒杀项目应该与分享的一致并且不可更改
-        if (that.data.isSanpUp) {
-          let SanpUps = that.data.SanpUp;
-          for (var i = 0; i < SanpUps.length; i++) {
-            if (SanpUps[i].id != that.data.SanpUpLink.rulesId) {
-              SanpUps.splice(i, 1);
+        if (that.data.isSnapUp) {
+          let SnapUps = that.data.SnapUp;
+          for (var i = 0; i < SnapUps.length; i++) {
+            if (SnapUps[i].id != that.data.SnapUpLink.rulesId) {
+              SnapUps.splice(i, 1);
             }
           }
-          SanpUps[0].checked = true;
+          SnapUps[0].checked = true;
           //重设秒杀规格
           that.setData({
-            SanpUp: SanpUps
+            SnapUp: SnapUps
           });
 
         }
@@ -224,32 +224,32 @@ Page({
   },
 
   // 秒杀选择
-  clickSanpUp: function(event) {
+  clickSnapUp: function(event) {
     let that = this;
 
     //参与秒杀，不可更改选择
-    if (that.data.isSanpUp) {
+    if (that.data.isSnapUp) {
       return;
     }
 
     let specName = event.currentTarget.dataset.name;
     let specValueId = event.currentTarget.dataset.valueId;
 
-    let _SanpUpList = this.data.SanpUp;
-    for (let i = 0; i < _SanpUpList.length; i++) {
-      if (_SanpUpList[i].id == specValueId) {
-        if (_SanpUpList[i].checked) {
-          _SanpUpList[i].checked = false;
+    let _SnapUpList = this.data.SnapUp;
+    for (let i = 0; i < _SnapUpList.length; i++) {
+      if (_SnapUpList[i].id == specValueId) {
+        if (_SnapUpList[i].checked) {
+          _SnapUpList[i].checked = false;
         } else {
-          _SanpUpList[i].checked = true;
+          _SnapUpList[i].checked = true;
         }
       } else {
-        _SanpUpList[i].checked = false;
+        _SnapUpList[i].checked = false;
       }
     }
 
     this.setData({
-      SanpUp: _SanpUpList,
+      SnapUp: _SnapUpList,
     });
   },
 
@@ -289,12 +289,12 @@ Page({
   },
 
   //获取选中的秒杀信息
-  getCheckedSanpUpValue: function() {
+  getCheckedSnapUpValue: function() {
     let checkedValues = {};
-    let _SanpUpList = this.data.SanpUp;
-    for (let i = 0; i < _SanpUpList.length; i++) {
-      if (_SanpUpList[i].checked) {
-        checkedValues = _SanpUpList[i];
+    let _SnapUpList = this.data.SnapUp;
+    for (let i = 0; i < _SnapUpList.length; i++) {
+      if (_SnapUpList[i].checked) {
+        checkedValues = _SnapUpList[i];
       }
     }
 
@@ -423,11 +423,11 @@ Page({
       this.getGoodsInfo();
     }
 
-    if (options.SanpUpId) {
+    if (options.SnapUpId) {
       this.setData({
-        isSanpUp: true,
+        isSnapUp: true,
       });
-      this.getSanpUpInfo(options.SanpUpId);
+      this.getSnapUpInfo(options.SnapUpId);
     }
     let that = this;
     wx.getSetting({
@@ -524,7 +524,7 @@ Page({
       }
 
       //验证秒杀是否有效
-      let checkedSanpUp = this.getCheckedSanpUpValue();
+      let checkedSnapUp = this.getCheckedSnapUpValue();
 
       //立即购买
       util.request(api.CartFastAdd, {
@@ -538,8 +538,8 @@ Page({
             // 如果storage中设置了cartId，则是立即购买，否则是购物车购买
             try {
               wx.setStorageSync('cartId', res.data);
-              wx.setStorageSync('SanpUpRulesId', checkedSanpUp.id);
-              wx.setStorageSync('SanpUpLinkId', that.data.SanpUpLink.id);
+              wx.setStorageSync('SnapUpRulesId', checkedSnapUp.id);
+              wx.setStorageSync('SnapUpLinkId', that.data.SnapUpLink.id);
               wx.navigateTo({
                 url: '/pages/checkout/checkout'
               })

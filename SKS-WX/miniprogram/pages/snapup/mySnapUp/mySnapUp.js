@@ -19,7 +19,7 @@ Page({
 
   getOrderList() {
     let that = this;
-    util.request(api.GroupOnMy, {
+    util.request(api.SnapUpMy, {
       showType: that.data.showType
     }).then(function(res) {
       if (res.errno === 0) {

@@ -11,7 +11,7 @@ Page({
     hotGoods: [],
     topics: [],
     brands: [],
-    groupons: [],
+    snapups: [],
     floorGoods: [],
     banner: [],
     channel: [],
@@ -45,7 +45,7 @@ Page({
           brands: res.data.brandList,
           floorGoods: res.data.floorGoodsList,
           banner: res.data.banner,
-          groupons: res.data.grouponList,
+          snapups: res.data.snapupList,
           channel: res.data.channel,
           coupon: res.data.couponList
         });
@@ -74,9 +74,9 @@ Page({
         wx.navigateTo({
           url: '../goods/goods?id=' + id
         });
-      } else if (_type == 'groupon') {
+      } else if (_type == 'snapup') {
         wx.navigateTo({
-          url: '../goods/goods?grouponId=' + id
+          url: '../goods/goods?snapupId=' + id
         });
       } else {
         wx.navigateTo({
@@ -86,10 +86,10 @@ Page({
     }
 
     // 页面初始化 options为页面跳转所带来的参数
-    if (options.grouponId) {
+    if (options.snapupId) {
       //这个pageId的值存在则证明首页的开启来源于用户点击来首页,同时可以通过获取到的pageId的值跳转导航到对应的详情页
       wx.navigateTo({
-        url: '../goods/goods?grouponId=' + options.grouponId
+        url: '../goods/goods?snapupId=' + options.snapupId
       });
     }
 
