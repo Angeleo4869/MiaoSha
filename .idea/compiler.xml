@@ -9,6 +9,7 @@
         <module name="SKS-Core" />
         <module name="SKS-WX" />
         <module name="SKS-DB" />
+        <module name="SKS-Start" />
         <module name="SKS-Admin" />
       </profile>
     </annotationProcessing>
@@ -22,6 +23,7 @@
       <module name="SKS-Admin" options="-parameters" />
       <module name="SKS-Core" options="-parameters" />
       <module name="SKS-DB" options="-parameters" />
+      <module name="SKS-Start" options="-parameters" />
       <module name="SKS-WX" options="-parameters" />
       <module name="SecondsKillSystem" options="" />
       <module name="Wx" options="-parameters" />

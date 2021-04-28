@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/GoodsProductMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksAdMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksAddressMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksAdminMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksAftersaleMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksBrandMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksCartMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksCategoryMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksCollectMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksCommentMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksCouponMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksCouponUserMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksFeedbackMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksFootprintMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksGoodsAttributeMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksGoodsMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksGoodsProductMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksGoodsSpecificationMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksIssueMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksKeywordMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksLogMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksNoticeAdminMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksNoticeMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksOrderGoodsMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksOrderMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksPermissionMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksRegionMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksRoleMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksSearchHistoryMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksSnapUpMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksSnapUpRulesMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksStorageMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksSystemMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksTopicMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/SksUserMapper.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/SKS-DB/src/main/resources/com/angeleo/sks/db/mapper/StatMapper.xml" dialect="GenericSQL" />
+  </component>
+</project>
