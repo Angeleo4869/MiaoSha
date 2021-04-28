@@ -10,7 +10,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.angeleo.sks</groupId>
-    <artifactId>Admin</artifactId>
+    <artifactId>admin</artifactId>
     <packaging>jar</packaging>
     <version>0.0.1-SNAPSHOT</version>
     <name>SKS-Admin</name>
@@ -22,13 +22,13 @@
     <dependencies>
         <dependency>
             <groupId>com.angeleo.sks</groupId>
-            <artifactId>Core</artifactId>
+            <artifactId>core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
         <dependency>
             <groupId>com.angeleo.sks</groupId>
-            <artifactId>Db</artifactId>
+            <artifactId>db</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
