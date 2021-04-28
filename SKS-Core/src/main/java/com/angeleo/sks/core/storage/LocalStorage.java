@@ -17,23 +17,18 @@ import java.util.stream.Stream;
 
 /**
  * 服务器本地对象存储服务
+ * @author leo
  */
 public class LocalStorage implements Storage {
 
 
     private final Log logger = LogFactory.getLog(LocalStorage.class);
 
-    private String storagePath;
     private String address;
 
     private Path rootLocation;
 
-    public String getStoragePath() {
-        return storagePath;
-    }
-
     public void setStoragePath(String storagePath) {
-        this.storagePath = storagePath;
 
         this.rootLocation = Paths.get(storagePath);
         try {
@@ -41,10 +36,6 @@ public class LocalStorage implements Storage {
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
         }
-    }
-
-    public String getAddress() {
-        return address;
     }
 
     public void setAddress(String address) {

@@ -1,6 +1,11 @@
 package com.angeleo.sks.core.notify;
 
+/**
+ * @author leo
+ */
+
 public enum NotifyType {
+    //
     PAY_SUCCEED("paySucceed"),
     SHIP("ship"),
     REFUND("refund"),

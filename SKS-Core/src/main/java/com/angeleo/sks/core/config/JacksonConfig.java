@@ -20,6 +20,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * @author leo
+ */
 @Configuration
 public class JacksonConfig {
 

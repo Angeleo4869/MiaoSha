@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 
+/**
+ * @author leo
+ */
 public class ExpressInfo {
 
     @JsonProperty("LogisticCode")

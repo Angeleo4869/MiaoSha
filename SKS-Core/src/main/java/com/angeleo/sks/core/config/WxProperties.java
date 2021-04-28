@@ -3,6 +3,9 @@ package com.angeleo.sks.core.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * @author leo
+ */
 @Configuration
 @ConfigurationProperties(prefix = "sks.wx")
 public class WxProperties {

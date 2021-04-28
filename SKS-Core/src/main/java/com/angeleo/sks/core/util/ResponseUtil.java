@@ -15,7 +15,6 @@ import java.util.Map;
  *      data：  响应数据
  *  }
  * </pre>
- *
  * <p>
  * 错误码：
  * <ul>
@@ -38,6 +37,7 @@ import java.util.Map;
  * <li> 7xx，管理后台后端业务错误码，
  * 具体见sks-wx-api模块的WxResponseCode。
  * </ul>
+ * @author leo
  */
 public class ResponseUtil {
     public static Object ok() {
@@ -140,5 +140,7 @@ public class ResponseUtil {
     public static Object unauthz() {
         return fail(506, "无操作权限");
     }
+
+
 }
 

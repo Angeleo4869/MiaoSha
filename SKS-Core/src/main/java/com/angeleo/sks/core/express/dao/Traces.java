@@ -3,6 +3,9 @@ package com.angeleo.sks.core.express.dao;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * @author leo
+ */
 public class Traces {
 
     @JsonProperty("AcceptStation")

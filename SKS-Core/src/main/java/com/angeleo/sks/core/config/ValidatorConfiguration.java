@@ -8,6 +8,9 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
+/**
+ * @author leo
+ */
 @Configuration
 public class ValidatorConfiguration {
     @Bean

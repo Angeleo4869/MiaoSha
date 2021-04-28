@@ -16,6 +16,9 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.util.stream.Stream;
 
+/**
+ * @author leo
+ */
 public class QiniuStorage implements Storage {
 
     private final Log logger = LogFactory.getLog(QiniuStorage.class);
@@ -28,32 +31,16 @@ public class QiniuStorage implements Storage {
     private UploadManager uploadManager;
     private BucketManager bucketManager;
 
-    public String getEndpoint() {
-        return endpoint;
-    }
-
     public void setEndpoint(String endpoint) {
         this.endpoint = endpoint;
-    }
-
-    public String getAccessKey() {
-        return accessKey;
     }
 
     public void setAccessKey(String accessKey) {
         this.accessKey = accessKey;
     }
 
-    public String getSecretKey() {
-        return secretKey;
-    }
-
     public void setSecretKey(String secretKey) {
         this.secretKey = secretKey;
-    }
-
-    public String getBucketName() {
-        return bucketName;
     }
 
     public void setBucketName(String bucketName) {

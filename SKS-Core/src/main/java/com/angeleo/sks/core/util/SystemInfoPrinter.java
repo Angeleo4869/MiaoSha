@@ -5,6 +5,9 @@ import org.apache.commons.logging.LogFactory;
 
 import java.util.Map;
 
+/**
+ * @author leo
+ */
 public class SystemInfoPrinter {
 
     private static final Log logger = LogFactory.getLog(SystemInfoPrinter.class);

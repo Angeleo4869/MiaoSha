@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author leo
+ */
 @ConfigurationProperties(prefix = "sks.express")
 public class ExpressProperties {
     private boolean enable;

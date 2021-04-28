@@ -2,6 +2,7 @@ package com.angeleo.sks.core.notify;
 
 /**
  * 发送短信的返回结果
+ * @author leo
  */
 public class SmsResult {
     private boolean successful;

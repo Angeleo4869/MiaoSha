@@ -8,7 +8,9 @@ import org.apache.commons.logging.LogFactory;
 
 import java.io.IOException;
 
-/*
+/**
+ * @author leo
+ *
  * 腾讯云短信服务
  */
 public class TencentSmsSender implements SmsSender {

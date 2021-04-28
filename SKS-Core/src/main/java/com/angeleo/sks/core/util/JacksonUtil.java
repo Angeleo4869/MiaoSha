@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author leo
+ */
 public class JacksonUtil {
 
     private static final Log logger = LogFactory.getLog(JacksonUtil.class);
@@ -103,8 +106,8 @@ public class JacksonUtil {
             node = mapper.readTree(body);
             JsonNode leaf = node.get(field);
             if (leaf != null) {
-                Integer value = leaf.asInt();
-                return value.shortValue();
+                int value = leaf.asInt();
+                return (short) value;
             }
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
@@ -119,8 +122,8 @@ public class JacksonUtil {
             node = mapper.readTree(body);
             JsonNode leaf = node.get(field);
             if (leaf != null) {
-                Integer value = leaf.asInt();
-                return value.byteValue();
+                int value = leaf.asInt();
+                return (byte) value;
             }
         } catch (IOException e) {
             logger.error(e.getMessage(), e);

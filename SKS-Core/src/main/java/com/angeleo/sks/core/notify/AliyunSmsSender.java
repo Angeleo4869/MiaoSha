@@ -16,7 +16,9 @@ import org.apache.commons.logging.LogFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-/*
+/**
+ * @author leo
+ *
  * 阿里云短信服务
  */
 public class AliyunSmsSender implements SmsSender {

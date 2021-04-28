@@ -2,6 +2,9 @@ package com.angeleo.sks.core.util;
 
 import java.util.Random;
 
+/**
+ * @author leo
+ */
 public class CharUtil {
 
     public static String getRandomString(Integer num) {

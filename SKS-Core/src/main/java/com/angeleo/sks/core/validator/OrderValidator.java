@@ -6,6 +6,9 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.List;
 
+/**
+ * @author leo
+ */
 public class OrderValidator implements ConstraintValidator<Order, String> {
     private List<String> valueList;
 
