@@ -151,10 +151,10 @@
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
 
-        <table tableName="sks_groupon_rules">
+        <table tableName="sks_snapup_rules">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
-        <table tableName="sks_groupon">
+        <table tableName="sks_snapup">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
         <table tableName="sks_coupon">

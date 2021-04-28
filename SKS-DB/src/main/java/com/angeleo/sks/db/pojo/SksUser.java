@@ -702,6 +702,7 @@ public class SksUser {
      * @mbg.generated
      */
     public enum Deleted {
+        //
         NOT_DELETED(new Boolean("0"), "未删除"),
         IS_DELETED(new Boolean("1"), "已删除");
 
@@ -770,6 +771,7 @@ public class SksUser {
      * @mbg.generated
      */
     public enum Column {
+        //
         id("id", "id", "INTEGER", false),
         username("username", "username", "VARCHAR", false),
         password("password", "password", "VARCHAR", true),

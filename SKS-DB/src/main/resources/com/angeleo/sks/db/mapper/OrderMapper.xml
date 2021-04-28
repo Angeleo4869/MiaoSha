@@ -43,8 +43,8 @@
             <if test="order.integralPrice != null">
                 integral_price = #{order.integralPrice,jdbcType=DECIMAL},
             </if>
-            <if test="order.grouponPrice != null">
-                groupon_price = #{order.grouponPrice,jdbcType=DECIMAL},
+            <if test="order.snapupPrice != null">
+                snapup_price = #{order.snapupPrice,jdbcType=DECIMAL},
             </if>
             <if test="order.orderPrice != null">
                 order_price = #{order.orderPrice,jdbcType=DECIMAL},

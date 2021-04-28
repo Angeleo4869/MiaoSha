@@ -1953,17 +1953,17 @@ public class SksOrderExample {
         }
 
         public Criteria andGrouponPriceIsNull() {
-            addCriterion("groupon_price is null");
+            addCriterion("snapup_price is null");
             return (Criteria) this;
         }
 
         public Criteria andGrouponPriceIsNotNull() {
-            addCriterion("groupon_price is not null");
+            addCriterion("snapup_price is not null");
             return (Criteria) this;
         }
 
         public Criteria andGrouponPriceEqualTo(BigDecimal value) {
-            addCriterion("groupon_price =", value, "grouponPrice");
+            addCriterion("snapup_price =", value, "snapupPrice");
             return (Criteria) this;
         }
 
@@ -1974,12 +1974,12 @@ public class SksOrderExample {
          * @mbg.generated
          */
         public Criteria andGrouponPriceEqualToColumn(SksOrder.Column column) {
-            addCriterion(new StringBuilder("groupon_price = ").append(column.getEscapedColumnName()).toString());
+            addCriterion(new StringBuilder("snapup_price = ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
         public Criteria andGrouponPriceNotEqualTo(BigDecimal value) {
-            addCriterion("groupon_price <>", value, "grouponPrice");
+            addCriterion("snapup_price <>", value, "snapupPrice");
             return (Criteria) this;
         }
 
@@ -1990,12 +1990,12 @@ public class SksOrderExample {
          * @mbg.generated
          */
         public Criteria andGrouponPriceNotEqualToColumn(SksOrder.Column column) {
-            addCriterion(new StringBuilder("groupon_price <> ").append(column.getEscapedColumnName()).toString());
+            addCriterion(new StringBuilder("snapup_price <> ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
         public Criteria andGrouponPriceGreaterThan(BigDecimal value) {
-            addCriterion("groupon_price >", value, "grouponPrice");
+            addCriterion("snapup_price >", value, "snapupPrice");
             return (Criteria) this;
         }
 
@@ -2006,12 +2006,12 @@ public class SksOrderExample {
          * @mbg.generated
          */
         public Criteria andGrouponPriceGreaterThanColumn(SksOrder.Column column) {
-            addCriterion(new StringBuilder("groupon_price > ").append(column.getEscapedColumnName()).toString());
+            addCriterion(new StringBuilder("snapup_price > ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
         public Criteria andGrouponPriceGreaterThanOrEqualTo(BigDecimal value) {
-            addCriterion("groupon_price >=", value, "grouponPrice");
+            addCriterion("snapup_price >=", value, "snapupPrice");
             return (Criteria) this;
         }
 
@@ -2022,12 +2022,12 @@ public class SksOrderExample {
          * @mbg.generated
          */
         public Criteria andGrouponPriceGreaterThanOrEqualToColumn(SksOrder.Column column) {
-            addCriterion(new StringBuilder("groupon_price >= ").append(column.getEscapedColumnName()).toString());
+            addCriterion(new StringBuilder("snapup_price >= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
         public Criteria andGrouponPriceLessThan(BigDecimal value) {
-            addCriterion("groupon_price <", value, "grouponPrice");
+            addCriterion("snapup_price <", value, "snapupPrice");
             return (Criteria) this;
         }
 
@@ -2038,12 +2038,12 @@ public class SksOrderExample {
          * @mbg.generated
          */
         public Criteria andGrouponPriceLessThanColumn(SksOrder.Column column) {
-            addCriterion(new StringBuilder("groupon_price < ").append(column.getEscapedColumnName()).toString());
+            addCriterion(new StringBuilder("snapup_price < ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
         public Criteria andGrouponPriceLessThanOrEqualTo(BigDecimal value) {
-            addCriterion("groupon_price <=", value, "grouponPrice");
+            addCriterion("snapup_price <=", value, "snapupPrice");
             return (Criteria) this;
         }
 
@@ -2054,27 +2054,27 @@ public class SksOrderExample {
          * @mbg.generated
          */
         public Criteria andGrouponPriceLessThanOrEqualToColumn(SksOrder.Column column) {
-            addCriterion(new StringBuilder("groupon_price <= ").append(column.getEscapedColumnName()).toString());
+            addCriterion(new StringBuilder("snapup_price <= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
         public Criteria andGrouponPriceIn(List<BigDecimal> values) {
-            addCriterion("groupon_price in", values, "grouponPrice");
+            addCriterion("snapup_price in", values, "snapupPrice");
             return (Criteria) this;
         }
 
         public Criteria andGrouponPriceNotIn(List<BigDecimal> values) {
-            addCriterion("groupon_price not in", values, "grouponPrice");
+            addCriterion("snapup_price not in", values, "snapupPrice");
             return (Criteria) this;
         }
 
         public Criteria andGrouponPriceBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("groupon_price between", value1, value2, "grouponPrice");
+            addCriterion("snapup_price between", value1, value2, "snapupPrice");
             return (Criteria) this;
         }
 
         public Criteria andGrouponPriceNotBetween(BigDecimal value1, BigDecimal value2) {
-            addCriterion("groupon_price not between", value1, value2, "grouponPrice");
+            addCriterion("snapup_price not between", value1, value2, "snapupPrice");
             return (Criteria) this;
         }
 
