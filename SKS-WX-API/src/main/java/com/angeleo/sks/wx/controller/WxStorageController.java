@@ -30,7 +30,7 @@ public class WxStorageController {
     @Autowired
     private StorageService storageService;
     @Autowired
-    private SksStorageService litemallStorageService;
+    private SksStorageService sksStorageService;
 
     private String generateKey(String originalFilename) {
         int index = originalFilename.lastIndexOf('.');
@@ -41,7 +41,7 @@ public class WxStorageController {
 
         do {
             key = CharUtil.getRandomString(20) + suffix;
-            storageInfo = litemallStorageService.findByKey(key);
+            storageInfo = sksStorageService.findByKey(key);
         }
         while (storageInfo != null);
 
@@ -51,8 +51,8 @@ public class WxStorageController {
     @PostMapping("/upload")
     public Object upload(@RequestParam("file") MultipartFile file) throws IOException {
         String originalFilename = file.getOriginalFilename();
-        SksStorage litemallStorage = storageService.store(file.getInputStream(), file.getSize(), file.getContentType(), originalFilename);
-        return ResponseUtil.ok(litemallStorage);
+        SksStorage sksStorage = storageService.store(file.getInputStream(), file.getSize(), file.getContentType(), originalFilename);
+        return ResponseUtil.ok(sksStorage);
     }
 
     /**
@@ -63,14 +63,14 @@ public class WxStorageController {
      */
     @GetMapping("/fetch/{key:.+}")
     public ResponseEntity<Resource> fetch(@PathVariable String key) {
-        SksStorage litemallStorage = litemallStorageService.findByKey(key);
+        SksStorage sksStorage = sksStorageService.findByKey(key);
         if (key == null) {
             return ResponseEntity.notFound().build();
         }
         if (key.contains("../")) {
             return ResponseEntity.badRequest().build();
         }
-        String type = litemallStorage.getType();
+        String type = sksStorage.getType();
         MediaType mediaType = MediaType.parseMediaType(type);
 
         Resource file = storageService.loadAsResource(key);
@@ -88,7 +88,7 @@ public class WxStorageController {
      */
     @GetMapping("/download/{key:.+}")
     public ResponseEntity<Resource> download(@PathVariable String key) {
-        SksStorage litemallStorage = litemallStorageService.findByKey(key);
+        SksStorage sksStorage = sksStorageService.findByKey(key);
         if (key == null) {
             return ResponseEntity.notFound().build();
         }
@@ -96,7 +96,7 @@ public class WxStorageController {
             return ResponseEntity.badRequest().build();
         }
 
-        String type = litemallStorage.getType();
+        String type = sksStorage.getType();
         MediaType mediaType = MediaType.parseMediaType(type);
 
         Resource file = storageService.loadAsResource(key);

@@ -8,27 +8,26 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * @author zhy
- * @date 2019-01-17 23:07
- **/
+ * @author leo
+ */
 @Component
 public class GetRegionService {
 
 	@Autowired
 	private SksRegionService regionService;
 
-	private static List<SksRegion> litemallRegions;
+	private static List<SksRegion> sksRegions;
 
 	protected List<SksRegion> getSksRegions() {
-		if(litemallRegions==null){
+		if(sksRegions==null){
 			createRegion();
 		}
-		return litemallRegions;
+		return sksRegions;
 	}
 
 	private synchronized void createRegion(){
-		if (litemallRegions == null) {
-			litemallRegions = regionService.getAll();
+		if (sksRegions == null) {
+			sksRegions = regionService.getAll();
 		}
 	}
 }

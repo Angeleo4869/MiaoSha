@@ -22,6 +22,7 @@ import java.util.Map;
  * 商品搜索服务
  * <p>
  * 注意：目前搜索功能非常简单，只是基于关键字匹配。
+ * @author leo
  */
 @RestController
 @RequestMapping("/wx/search")

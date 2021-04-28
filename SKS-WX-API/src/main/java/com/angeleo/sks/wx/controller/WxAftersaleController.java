@@ -33,6 +33,7 @@ import java.util.Map;
  * 目前只支持订单整体售后，不支持订单商品单个售后
  *
  * 一个订单只能有一个售后记录
+ * @author leo
  */
 @RestController
 @RequestMapping("/wx/aftersale")

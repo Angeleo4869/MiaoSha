@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 /**
  * 验证码实体类，用于缓存验证码发送
+ * @author leo
  */
 public class CaptchaItem {
     private String phoneNumber;
@@ -11,7 +12,7 @@ public class CaptchaItem {
     private LocalDateTime expireTime;
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return this.phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -19,7 +20,7 @@ public class CaptchaItem {
     }
 
     public String getCode() {
-        return code;
+        return this.code;
     }
 
     public void setCode(String code) {
@@ -27,7 +28,7 @@ public class CaptchaItem {
     }
 
     public LocalDateTime getExpireTime() {
-        return expireTime;
+        return this.expireTime;
     }
 
     public void setExpireTime(LocalDateTime expireTime) {

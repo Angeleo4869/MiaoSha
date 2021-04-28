@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 简单缓存的数据
+ * @author leo
  */
 public class HomeCacheManager {
     public static final boolean ENABLE = false;
@@ -47,8 +48,9 @@ public class HomeCacheManager {
      * @return
      */
     public static boolean hasData(String cacheKey) {
-        if (!ENABLE)
+        if (!ENABLE) {
             return false;
+        }
 
         Map<String, Object> cacheData = cacheDataList.get(cacheKey);
         if (cacheData == null) {

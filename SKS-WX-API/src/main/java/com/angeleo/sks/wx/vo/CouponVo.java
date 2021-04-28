@@ -3,6 +3,9 @@ package com.angeleo.sks.wx.vo;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+/**
+ * @author leo
+ */
 public class CouponVo {
     private Integer id;
     private Integer cid;

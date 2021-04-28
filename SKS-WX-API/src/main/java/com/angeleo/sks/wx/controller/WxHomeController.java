@@ -25,6 +25,7 @@ import java.util.concurrent.*;
 
 /**
  * 首页服务
+ * @author leo
  */
 @RestController
 @RequestMapping("/wx/home")
@@ -48,20 +49,14 @@ public class WxHomeController {
     private SksCategoryService categoryService;
 
     @Autowired
-    private WxSnapUpRuleService grouponService;
+    private WxSnapUpRuleService snapupService;
 
     @Autowired
     private SksCouponService couponService;
 
-    private final static ArrayBlockingQueue<Runnable> WORK_QUEUE = new ArrayBlockingQueue<>(9);
-
-    private final static RejectedExecutionHandler HANDLER = new ThreadPoolExecutor.CallerRunsPolicy();
-
-    private static ThreadPoolExecutor executorService = new ThreadPoolExecutor(9, 9, 1000, TimeUnit.MILLISECONDS, WORK_QUEUE, HANDLER);
-
     @GetMapping("/cache")
     public Object cache(@NotNull String key) {
-        if (!key.equals("litemall_cache")) {
+        if (!"sks_cache".equals(key)) {
             return ResponseUtil.fail();
         }
 
@@ -83,11 +78,11 @@ public class WxHomeController {
         }
         ExecutorService executorService = Executors.newFixedThreadPool(10);
 
-        Callable<List> bannerListCallable = () -> adService.queryIndex();
+        Callable<List<?>> bannerListCallable = () -> adService.queryIndex();
 
-        Callable<List> channelListCallable = () -> categoryService.queryChannel();
+        Callable<List<?>> channelListCallable = () -> categoryService.queryChannel();
 
-        Callable<List> couponListCallable;
+        Callable<List<?>> couponListCallable;
         if(userId == null){
             couponListCallable = () -> couponService.queryList(0, 3);
         } else {
@@ -95,28 +90,28 @@ public class WxHomeController {
         }
 
 
-        Callable<List> newGoodsListCallable = () -> goodsService.queryByNew(0, SystemConfig.getNewLimit());
+        Callable<List<?>> newGoodsListCallable = () -> goodsService.queryByNew(0, SystemConfig.getNewLimit());
 
-        Callable<List> hotGoodsListCallable = () -> goodsService.queryByHot(0, SystemConfig.getHotLimit());
+        Callable<List<?>> hotGoodsListCallable = () -> goodsService.queryByHot(0, SystemConfig.getHotLimit());
 
-        Callable<List> brandListCallable = () -> brandService.query(0, SystemConfig.getBrandLimit());
+        Callable<List<?>> brandListCallable = () -> brandService.query(0, SystemConfig.getBrandLimit());
 
-        Callable<List> topicListCallable = () -> topicService.queryList(0, SystemConfig.getTopicLimit());
+        Callable<List<?>> topicListCallable = () -> topicService.queryList(0, SystemConfig.getTopicLimit());
 
-        //团购专区
-        Callable<List> grouponListCallable = () -> grouponService.queryList(0, 5);
+        //秒杀专区
+        Callable<List<?>> snapupListCallable = () -> snapupService.queryList(0, 5);
 
-        Callable<List> floorGoodsListCallable = this::getCategoryList;
+        Callable<List<?>> floorGoodsListCallable = this::getCategoryList;
 
-        FutureTask<List> bannerTask = new FutureTask<>(bannerListCallable);
-        FutureTask<List> channelTask = new FutureTask<>(channelListCallable);
-        FutureTask<List> couponListTask = new FutureTask<>(couponListCallable);
-        FutureTask<List> newGoodsListTask = new FutureTask<>(newGoodsListCallable);
-        FutureTask<List> hotGoodsListTask = new FutureTask<>(hotGoodsListCallable);
-        FutureTask<List> brandListTask = new FutureTask<>(brandListCallable);
-        FutureTask<List> topicListTask = new FutureTask<>(topicListCallable);
-        FutureTask<List> grouponListTask = new FutureTask<>(grouponListCallable);
-        FutureTask<List> floorGoodsListTask = new FutureTask<>(floorGoodsListCallable);
+        FutureTask<List<?>> bannerTask = new FutureTask<>(bannerListCallable);
+        FutureTask<List<?>> channelTask = new FutureTask<>(channelListCallable);
+        FutureTask<List<?>> couponListTask = new FutureTask<>(couponListCallable);
+        FutureTask<List<?>> newGoodsListTask = new FutureTask<>(newGoodsListCallable);
+        FutureTask<List<?>> hotGoodsListTask = new FutureTask<>(hotGoodsListCallable);
+        FutureTask<List<?>> brandListTask = new FutureTask<>(brandListCallable);
+        FutureTask<List<?>> topicListTask = new FutureTask<>(topicListCallable);
+        FutureTask<List<?>> snapupListTask = new FutureTask<>(snapupListCallable);
+        FutureTask<List<?>> floorGoodsListTask = new FutureTask<>(floorGoodsListCallable);
 
         executorService.submit(bannerTask);
         executorService.submit(channelTask);
@@ -125,10 +120,10 @@ public class WxHomeController {
         executorService.submit(hotGoodsListTask);
         executorService.submit(brandListTask);
         executorService.submit(topicListTask);
-        executorService.submit(grouponListTask);
+        executorService.submit(snapupListTask);
         executorService.submit(floorGoodsListTask);
 
-        Map<String, Object> entity = new HashMap<>();
+        Map<String, Object> entity = new HashMap<>(16);
         try {
             entity.put("banner", bannerTask.get());
             entity.put("channel", channelTask.get());
@@ -137,7 +132,7 @@ public class WxHomeController {
             entity.put("hotGoodsList", hotGoodsListTask.get());
             entity.put("brandList", brandListTask.get());
             entity.put("topicList", topicListTask.get());
-            entity.put("grouponList", grouponListTask.get());
+            entity.put("snapupList", snapupListTask.get());
             entity.put("floorGoodsList", floorGoodsListTask.get());
             //缓存数据
             HomeCacheManager.loadData(HomeCacheManager.INDEX, entity);
@@ -150,8 +145,8 @@ public class WxHomeController {
         return ResponseUtil.ok(entity);
     }
 
-    private List<Map> getCategoryList() {
-        List<Map> categoryList = new ArrayList<>();
+    private List<Map<?,?>> getCategoryList() {
+        List<Map<?,?>> categoryList = new ArrayList<>();
         List<SksCategory> catL1List = categoryService.queryL1WithoutRecommend(0, SystemConfig.getCatlogListLimit());
         for (SksCategory catL1 : catL1List) {
             List<SksCategory> catL2List = categoryService.queryByPid(catL1.getId());

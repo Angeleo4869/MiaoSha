@@ -2,6 +2,9 @@ package com.angeleo.sks.wx.dto;
 
 import java.time.LocalDateTime;
 
+/**
+ * @author leo
+ */
 public class UserToken {
     private Integer userId;
     private String token;

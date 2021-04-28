@@ -9,6 +9,9 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 
+/**
+ * @author leo
+ */
 public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
     public static final String LOGIN_TOKEN_KEY = "X-Sks-Token";
 

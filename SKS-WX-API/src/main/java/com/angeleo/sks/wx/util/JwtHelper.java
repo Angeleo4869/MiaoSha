@@ -14,13 +14,16 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
+/**
+ * @author leo
+ */
 public class JwtHelper {
 	// 秘钥
 	static final String SECRET = "X-Sks-Token";
 	// 签名是有谁生成
-	static final String ISSUSER = "LITEMALL";
+	static final String ISSUSER = "SKS";
 	// 签名的主题
-	static final String SUBJECT = "this is litemall token";
+	static final String SUBJECT = "this is Sks token";
 	// 签名的观众
 	static final String AUDIENCE = "MINIAPP";
 	
@@ -66,7 +69,7 @@ public class JwtHelper {
 		    Claim claim = claims.get("userId");
 		    return claim.asInt();
 		} catch (JWTVerificationException exception){
-//			exception.printStackTrace();
+			exception.printStackTrace();
 		}
 		
 		return 0;

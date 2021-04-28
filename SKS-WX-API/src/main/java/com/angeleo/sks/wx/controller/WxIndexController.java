@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 测试服务
+ * @author leo
  */
 @RestController
 @RequestMapping("/wx/index")

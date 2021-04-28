@@ -3,6 +3,9 @@ package com.angeleo.sks.wx.vo;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+/**
+ * @author leo
+ */
 public class SnapUpRuleVo {
     private Integer id;
     private String name;

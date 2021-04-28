@@ -27,6 +27,7 @@ import java.util.List;
 
 /**
  * 优惠券服务
+ * @author leo
  */
 @RestController
 @RequestMapping("/wx/coupon")
@@ -39,7 +40,7 @@ public class WxCouponController {
     @Autowired
     private SksCouponUserService couponUserService;
     @Autowired
-    private SksSnapUpRulesService grouponRulesService;
+    private SksSnapUpRulesService snapupRulesService;
     @Autowired
     private SksCartService cartService;
     @Autowired
@@ -48,11 +49,11 @@ public class WxCouponController {
     /**
      * 优惠券列表
      *
-     * @param page
-     * @param limit
-     * @param sort
-     * @param order
-     * @return
+     * @param: page
+     * @param: limit
+     * @param: sort
+     * @param: order
+     * @return:
      */
     @GetMapping("list")
     public Object list(@RequestParam(defaultValue = "1") Integer page,
@@ -67,13 +68,13 @@ public class WxCouponController {
     /**
      * 个人优惠券列表
      *
-     * @param userId
-     * @param status
-     * @param page
-     * @param limit
-     * @param sort
-     * @param order
-     * @return
+     * @param: userId
+     * @param: status
+     * @param: page
+     * @param: limit
+     * @param: sort
+     * @param: order
+     * @return:
      */
     @GetMapping("mylist")
     public Object mylist(@LoginUser Integer userId,
@@ -117,22 +118,22 @@ public class WxCouponController {
     /**
      * 当前购物车下单商品订单可用优惠券
      *
-     * @param userId
-     * @param cartId
-     * @param grouponRulesId
-     * @return
+     * @param: userId
+     * @param: cartId
+     * @param: snapupRulesId
+     * @return:
      */
     @GetMapping("selectlist")
-    public Object selectlist(@LoginUser Integer userId, Integer cartId, Integer grouponRulesId) {
+    public Object selectlist(@LoginUser Integer userId, Integer cartId, Integer snapupRulesId) {
         if (userId == null) {
             return ResponseUtil.unlogin();
         }
 
         // 团购优惠
-        BigDecimal grouponPrice = new BigDecimal(0.00);
-        SksSnapUpRules grouponRules = grouponRulesService.findById(grouponRulesId);
-        if (grouponRules != null) {
-            grouponPrice = grouponRules.getDiscount();
+        BigDecimal snapupPrice = new BigDecimal(0.00);
+        SksSnapUpRules snapupRules = snapupRulesService.findById(snapupRulesId);
+        if (snapupRules != null) {
+            snapupPrice = snapupRules.getDiscount();
         }
 
         // 商品价格
@@ -147,11 +148,11 @@ public class WxCouponController {
             checkedGoodsList = new ArrayList<>(1);
             checkedGoodsList.add(cart);
         }
-        BigDecimal checkedGoodsPrice = new BigDecimal(0.00);
+        BigDecimal checkedGoodsPrice = new BigDecimal("0.00");
         for (SksCart cart : checkedGoodsList) {
             //  只有当团购规格商品ID符合才进行团购优惠
-            if (grouponRules != null && grouponRules.getGoodsId().equals(cart.getGoodsId())) {
-                checkedGoodsPrice = checkedGoodsPrice.add(cart.getPrice().subtract(grouponPrice).multiply(new BigDecimal(cart.getNumber())));
+            if (snapupRules != null && snapupRules.getGoodsId().equals(cart.getGoodsId())) {
+                checkedGoodsPrice = checkedGoodsPrice.add(cart.getPrice().subtract(snapupPrice).multiply(new BigDecimal(cart.getNumber())));
             } else {
                 checkedGoodsPrice = checkedGoodsPrice.add(cart.getPrice().multiply(new BigDecimal(cart.getNumber())));
             }

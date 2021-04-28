@@ -1,5 +1,8 @@
 package com.angeleo.sks.wx.dto;
 
+/**
+ * @author leo
+ */
 public class UserInfo {
     private String nickName;
     private String avatarUrl;

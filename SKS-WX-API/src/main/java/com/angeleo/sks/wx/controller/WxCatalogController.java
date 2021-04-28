@@ -19,6 +19,7 @@ import java.util.Map;
 
 /**
  * 类目服务
+ * @author leo
  */
 @RestController
 @RequestMapping("/wx/catalog")
@@ -45,10 +46,7 @@ public class WxCatalogController {
 
     /**
      * 分类详情
-     *
-     * @param id   分类类目ID。
-     *             如果分类类目ID是空，则选择第一个分类类目。
-     *             需要注意，这里分类类目是一级类目
+     * @param id   分类类目ID。如果分类类目ID是空，则选择第一个分类类目。需要注意，这里分类类目是一级类目
      * @return 分类详情
      */
     @GetMapping("index")
@@ -91,7 +89,6 @@ public class WxCatalogController {
         if (HomeCacheManager.hasData(HomeCacheManager.CATALOG)) {
             return ResponseUtil.ok(HomeCacheManager.getCacheData(HomeCacheManager.CATALOG));
         }
-
 
         // 所有一级分类目录
         List<SksCategory> l1CatList = categoryService.queryL1();

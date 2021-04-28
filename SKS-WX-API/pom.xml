@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.angeleo.sks</groupId>
-    <artifactId>Wx</artifactId>
+    <artifactId>wx</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>SKS-WX</name>
     <dependencies>
@@ -21,7 +21,7 @@
 
         <dependency>
             <groupId>com.angeleo.sks</groupId>
-            <artifactId>Core</artifactId>
+            <artifactId>core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
@@ -33,7 +33,7 @@
 
         <dependency>
             <groupId>com.angeleo.sks</groupId>
-            <artifactId>Db</artifactId>
+            <artifactId>db</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 

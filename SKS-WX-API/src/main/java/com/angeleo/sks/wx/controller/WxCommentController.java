@@ -24,6 +24,7 @@ import java.util.Map;
 
 /**
  * 用户评论服务
+ * @author leo
  */
 @RestController
 @RequestMapping("/wx/comment")

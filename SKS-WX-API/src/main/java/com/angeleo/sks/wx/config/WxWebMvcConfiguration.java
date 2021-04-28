@@ -7,6 +7,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
+/**
+ * @author leo
+ */
 @Configuration
 public class WxWebMvcConfiguration implements WebMvcConfigurer {
     @Override

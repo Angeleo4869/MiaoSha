@@ -60,6 +60,7 @@ import java.util.Map;
  * 当301商家已发货时，此时用户可以有确认收货的操作
  * 当401用户确认收货以后，此时用户可以进行的操作是删除订单，评价商品，申请售后，或者再次购买
  * 当402系统自动确认收货以后，此时用户可以删除订单，评价商品，申请售后，或者再次购买
+ * @author leo
  */
 @Service
 public class WxOrderService {
@@ -84,9 +85,9 @@ public class WxOrderService {
     @Autowired
     private NotifyService notifyService;
     @Autowired
-    private SksSnapUpRulesService grouponRulesService;
+    private SksSnapUpRulesService snapupRulesService;
     @Autowired
-    private SksSnapUpService grouponService;
+    private SksSnapUpService snapupService;
     @Autowired
     private QCodeService qCodeService;
     @Autowired
@@ -136,8 +137,8 @@ public class WxOrderService {
             orderVo.put("handleOption", OrderUtil.build(o));
             orderVo.put("aftersaleStatus", o.getAftersaleStatus());
 
-            SksSnapUp groupon = grouponService.queryByOrderId(o.getId());
-            if (groupon != null) {
+            SksSnapUp snapup = snapupService.queryByOrderId(o.getId());
+            if (snapup != null) {
                 orderVo.put("isGroupin", true);
             } else {
                 orderVo.put("isGroupin", false);
@@ -237,7 +238,7 @@ public class WxOrderService {
      * 5. 如果是秒杀商品，则创建秒杀活动表项。
      *
      * @param userId 用户ID
-     * @param body   订单信息，{ cartId：xxx, addressId: xxx, couponId: xxx, message: xxx, grouponRulesId: xxx,  grouponLinkId: xxx}
+     * @param body   订单信息，{ cartId：xxx, addressId: xxx, couponId: xxx, message: xxx, snapupRulesId: xxx,  snapupLinkId: xxx}
      * @return 提交订单操作结果
      */
     @Transactional
@@ -253,12 +254,12 @@ public class WxOrderService {
         Integer couponId = JacksonUtil.parseInteger(body, "couponId");
         Integer userCouponId = JacksonUtil.parseInteger(body, "userCouponId");
         String message = JacksonUtil.parseString(body, "message");
-        Integer grouponRulesId = JacksonUtil.parseInteger(body, "grouponRulesId");
-        Integer grouponLinkId = JacksonUtil.parseInteger(body, "grouponLinkId");
+        Integer snapupRulesId = JacksonUtil.parseInteger(body, "snapupRulesId");
+        Integer snapupLinkId = JacksonUtil.parseInteger(body, "snapupLinkId");
 
         //如果是秒杀项目,验证活动是否有效
-        if (grouponRulesId != null && grouponRulesId > 0) {
-            SksSnapUpRules rules = grouponRulesService.findById(grouponRulesId);
+        if (snapupRulesId != null && snapupRulesId > 0) {
+            SksSnapUpRules rules = snapupRulesService.findById(snapupRulesId);
             //找不到记录
             if (rules == null) {
                 return ResponseUtil.badArgument();
@@ -272,27 +273,15 @@ public class WxOrderService {
                 return ResponseUtil.fail(WxResponseCode.GROUPON_OFFLINE, "秒杀已下线!");
             }
 
-            if (grouponLinkId != null && grouponLinkId > 0) {
+            if (snapupLinkId != null && snapupLinkId > 0) {
                 //秒杀人数已满
-                if(grouponService.countSnapUp(grouponLinkId) >= (rules.getDiscountMember() - 1)){
+                if(snapupService.countSnapUp(snapupLinkId) >= (rules.getDiscountMember() - 1)){
                     return ResponseUtil.fail(WxResponseCode.GROUPON_FULL, "秒杀活动人数已满!");
                 }
                 // NOTE
-                // 这里业务方面允许用户多次开团，以及多次参团，
-                // 但是会限制以下两点：
-                // （1）不允许参加已经加入的秒杀
-                if(grouponService.hasJoin(userId, grouponLinkId)){
+                // 不允许参加已经加入的秒杀
+                if(snapupService.hasJoin(userId, snapupLinkId)){
                     return ResponseUtil.fail(WxResponseCode.GROUPON_JOIN, "秒杀活动已经参加!");
-                }
-                // （2）不允许参加自己开团的秒杀
-                SksSnapUp groupon = grouponService.queryById(userId, grouponLinkId);
-                // if(groupon.getCreatorUserId().equals(userId)){
-                //     return ResponseUtil.fail(GROUPON_JOIN, "秒杀活动已经参加!");
-                // }
-                if(groupon!=null) {
-	                if(groupon.getCreatorUserId().equals(userId)){
-	                    return ResponseUtil.fail(WxResponseCode.GROUPON_JOIN, "秒杀活动已经参加!");
-	                }
                 }
             }
         }
@@ -308,10 +297,10 @@ public class WxOrderService {
         }
 
         // 秒杀优惠
-        BigDecimal grouponPrice = new BigDecimal(0);
-        SksSnapUpRules grouponRules = grouponRulesService.findById(grouponRulesId);
-        if (grouponRules != null) {
-            grouponPrice = grouponRules.getDiscount();
+        BigDecimal snapupPrice = new BigDecimal(0);
+        SksSnapUpRules snapupRules = snapupRulesService.findById(snapupRulesId);
+        if (snapupRules != null) {
+            snapupPrice = snapupRules.getDiscount();
         }
 
         // 货品价格
@@ -329,8 +318,8 @@ public class WxOrderService {
         BigDecimal checkedGoodsPrice = new BigDecimal(0);
         for (SksCart checkGoods : checkedGoodsList) {
             //  只有当秒杀规格商品ID符合才进行秒杀优惠
-            if (grouponRules != null && grouponRules.getGoodsId().equals(checkGoods.getGoodsId())) {
-                checkedGoodsPrice = checkedGoodsPrice.add(checkGoods.getPrice().subtract(grouponPrice).multiply(new BigDecimal(checkGoods.getNumber())));
+            if (snapupRules != null && snapupRules.getGoodsId().equals(checkGoods.getGoodsId())) {
+                checkedGoodsPrice = checkedGoodsPrice.add(checkGoods.getPrice().subtract(snapupPrice).multiply(new BigDecimal(checkGoods.getNumber())));
             } else {
                 checkedGoodsPrice = checkedGoodsPrice.add(checkGoods.getPrice().multiply(new BigDecimal(checkGoods.getNumber())));
             }
@@ -383,10 +372,13 @@ public class WxOrderService {
         order.setActualPrice(actualPrice);
 
         // 有秒杀
-        if (grouponRules != null) {
-            order.setSnapUpPrice(grouponPrice);    //  秒杀价格
+        if (snapupRules != null) {
+
+            //  秒杀价格
+            order.setSnapUpPrice(snapupPrice);
         } else {
-            order.setSnapUpPrice(new BigDecimal(0));    //  秒杀价格
+            //  秒杀价格
+            order.setSnapUpPrice(new BigDecimal(0));
         }
 
         // 添加订单表项
@@ -442,27 +434,23 @@ public class WxOrderService {
         }
 
         //如果是秒杀项目，添加秒杀信息
-        if (grouponRulesId != null && grouponRulesId > 0) {
-            SksSnapUp groupon = new SksSnapUp();
-            groupon.setOrderId(orderId);
-            groupon.setStatus(SnapUpConstant.STATUS_NONE);
-            groupon.setUserId(userId);
-            groupon.setRulesId(grouponRulesId);
+        if (snapupRulesId != null && snapupRulesId > 0) {
+            SksSnapUp snapup = new SksSnapUp();
+            snapup.setOrderId(orderId);
+            snapup.setStatus(SnapUpConstant.STATUS_NONE);
+            snapup.setUserId(userId);
+            snapup.setRulesId(snapupRulesId);
 
             //参与者
-            if (grouponLinkId != null && grouponLinkId > 0) {
+            if (snapupLinkId != null && snapupLinkId > 0) {
                 //参与的秒杀记录
-                SksSnapUp baseSnapUp = grouponService.queryById(grouponLinkId);
-                groupon.setCreatorUserId(baseSnapUp.getCreatorUserId());
-                groupon.setSnapUpId(grouponLinkId);
-                groupon.setShareUrl(baseSnapUp.getShareUrl());
-                grouponService.createSnapUp(groupon);
+                SksSnapUp baseSnapUp = snapupService.queryById(snapupLinkId);
+                snapup.setShareUrl(baseSnapUp.getShareUrl());
+                snapupService.createSnapUp(snapup);
             } else {
-                groupon.setCreatorUserId(userId);
-                groupon.setCreatorUserTime(LocalDateTime.now());
-                groupon.setSnapUpId(0);
-                grouponService.createSnapUp(groupon);
-                grouponLinkId = groupon.getId();
+                snapup.setCreatorUserTime(LocalDateTime.now());
+                snapupService.createSnapUp(snapup);
+                snapupLinkId = snapup.getId();
             }
         }
 
@@ -471,11 +459,11 @@ public class WxOrderService {
 
         Map<String, Object> data = new HashMap<>();
         data.put("orderId", orderId);
-        if (grouponRulesId != null && grouponRulesId > 0) {
-            data.put("grouponLinkId", grouponLinkId);
+        if (snapupRulesId != null && snapupRulesId > 0) {
+            data.put("snapupLinkId", snapupLinkId);
         }
         else {
-            data.put("grouponLinkId", 0);
+            data.put("snapupLinkId", 0);
         }
         return ResponseUtil.ok(data);
     }
@@ -729,31 +717,28 @@ public class WxOrderService {
         }
 
         //  支付成功，有秒杀信息，更新秒杀信息
-        SksSnapUp groupon = grouponService.queryByOrderId(order.getId());
-        if (groupon != null) {
-            SksSnapUpRules grouponRules = grouponRulesService.findById(groupon.getRulesId());
+        SksSnapUp snapup = snapupService.queryByOrderId(order.getId());
+        if (snapup != null) {
+            SksSnapUpRules snapupRules = snapupRulesService.findById(snapup.getRulesId());
 
-            //仅当发起者才创建分享图片
-            if (groupon.getSnapUpId() == 0) {
-                String url = qCodeService.createSnapUpShareImage(grouponRules.getGoodsName(), grouponRules.getPicUrl(), groupon);
-                groupon.setShareUrl(url);
-            }
-            groupon.setStatus(SnapUpConstant.STATUS_ON);
-            if (grouponService.updateById(groupon) == 0) {
+            String url = qCodeService.createSnapUpShareImage(snapupRules.getGoodsName(), snapupRules.getPicUrl(), snapup);
+            snapup.setShareUrl(url);
+            snapup.setStatus(SnapUpConstant.STATUS_ON);
+            if (snapupService.updateById(snapup) == 0) {
                 return WxPayNotifyResponse.fail("更新数据已失效");
             }
 
 
-            List<SksSnapUp> grouponList = grouponService.queryJoinRecord(groupon.getSnapUpId());
-            if (groupon.getSnapUpId() != 0 && (grouponList.size() >= grouponRules.getDiscountMember() - 1)) {
-                for (SksSnapUp grouponActivity : grouponList) {
-                    grouponActivity.setStatus(SnapUpConstant.STATUS_SUCCEED);
-                    grouponService.updateById(grouponActivity);
+            List<SksSnapUp> snapupList = snapupService.queryJoinRecord(snapup.getId());
+            if (snapupList.size() >= snapupRules.getDiscountMember() - 1) {
+                for (SksSnapUp snapupActivity : snapupList) {
+                    snapupActivity.setStatus(SnapUpConstant.STATUS_SUCCEED);
+                    snapupService.updateById(snapupActivity);
                 }
 
-                SksSnapUp grouponSource = grouponService.queryById(groupon.getSnapUpId());
-                grouponSource.setStatus(SnapUpConstant.STATUS_SUCCEED);
-                grouponService.updateById(grouponSource);
+                SksSnapUp snapupSource = snapupService.queryById(snapup.getId());
+                snapupSource.setStatus(SnapUpConstant.STATUS_SUCCEED);
+                snapupService.updateById(snapupSource);
             }
         }
 

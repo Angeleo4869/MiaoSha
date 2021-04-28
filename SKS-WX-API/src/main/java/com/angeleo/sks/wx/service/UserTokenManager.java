@@ -4,6 +4,7 @@ import com.angeleo.sks.wx.util.JwtHelper;
 
 /**
  * 维护用户token
+ * @author leo
  */
 public class UserTokenManager {
 	public static String generateToken(Integer id) {

@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * @author leo
+ */
 @RestController
 @RequestMapping("/wx/issue")
 @Validated

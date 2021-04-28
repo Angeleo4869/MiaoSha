@@ -19,6 +19,7 @@ import java.util.List;
 
 /**
  * 用户收货地址服务
+ * @author leo
  */
 @RestController
 @RequestMapping("/wx/address")
@@ -28,9 +29,6 @@ public class WxAddressController extends GetRegionService {
 
 	@Autowired
 	private SksAddressService addressService;
-
-	@Autowired
-	private SksRegionService regionService;
 
 
 	/**
@@ -143,8 +141,8 @@ public class WxAddressController extends GetRegionService {
 			address.setUserId(userId);
 			addressService.add(address);
 		} else {
-			SksAddress litemallAddress = addressService.query(userId, address.getId());
-			if (litemallAddress == null) {
+			SksAddress sksAddress = addressService.query(userId, address.getId());
+			if (sksAddress == null) {
 				return ResponseUtil.badArgumentValue();
 			}
 
@@ -175,8 +173,8 @@ public class WxAddressController extends GetRegionService {
 		if (id == null) {
 			return ResponseUtil.badArgument();
 		}
-		SksAddress litemallAddress = addressService.query(userId, id);
-		if (litemallAddress == null) {
+		SksAddress sksAddress = addressService.query(userId, id);
+		if (sksAddress == null) {
 			return ResponseUtil.badArgumentValue();
 		}
 

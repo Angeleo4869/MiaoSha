@@ -20,6 +20,7 @@ import java.util.Map;
 
 /**
  * 用户访问足迹服务
+ * @author leo
  */
 @RestController
 @RequestMapping("/wx/footprint")

@@ -7,6 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+/**
+ * @author leo
+ */
 @SpringBootApplication(scanBasePackages = {"com.angeleo.sks.db", "com.angeleo.sks.core", "com.angeleo.sks.wx"})
 @MapperScan("com.angeleo.sks.db.mapper")
 @EnableTransactionManagement

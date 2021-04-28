@@ -29,9 +29,10 @@ import java.util.Map;
 import static com.angeleo.sks.wx.util.WxResponseCode.*;
 
 /**
- * 团购服务
+ * 秒杀服务
  * <p>
- * 需要注意这里团购规则和团购活动的关系和区别。
+ * 需要注意这里秒杀规则和秒杀活动的关系和区别。
+ * @author leo
  */
 @RestController
 @RequestMapping("/wx/snapup")
@@ -59,11 +60,11 @@ public class WxSnapUpController {
     private SksSnapUpRulesService snapupRulesService;
 
     /**
-     * 团购规则列表
+     * 秒杀规则列表
      *
      * @param page 分页页数
      * @param limit 分页大小
-     * @return 团购规则列表
+     * @return 秒杀规则列表
      */
     @GetMapping("list")
     public Object list(@RequestParam(defaultValue = "1") Integer page,
@@ -75,11 +76,11 @@ public class WxSnapUpController {
     }
 
     /**
-     * 团购活动详情
+     * 秒杀活动详情
      *
      * @param userId    用户ID
-     * @param snapupId 团购活动ID
-     * @return 团购活动详情
+     * @param snapupId 秒杀活动ID
+     * @return 秒杀活动详情
      */
     @GetMapping("detail")
     public Object detail(@LoginUser Integer userId, @NotNull Integer snapupId) {
@@ -105,7 +106,7 @@ public class WxSnapUpController {
         if (!order.getUserId().equals(userId)) {
             return ResponseUtil.fail(ORDER_INVALID, "不是当前用户的订单");
         }
-        Map<String, Object> orderVo = new HashMap<String, Object>();
+        Map<String, Object> orderVo = new HashMap<>();
         orderVo.put("id", order.getId());
         orderVo.put("orderSn", order.getOrderSn());
         orderVo.put("addTime", order.getAddTime());
@@ -146,17 +147,10 @@ public class WxSnapUpController {
             result.put("expressInfo", ei);
         }
 
-        UserVo creator = userService.findUserVoById(snapup.getCreatorUserId());
+        UserVo creator = userService.findUserVoById(snapup.getUserId());
         List<UserVo> joiners = new ArrayList<>();
         joiners.add(creator);
-        int linkSnapUpId;
-        // 这是一个团购发起记录
-        if (snapup.getSnapUpId() == 0) {
-            linkSnapUpId = snapup.getId();
-        } else {
-            linkSnapUpId = snapup.getSnapUpId();
-
-        }
+        int linkSnapUpId = snapup.getId();
         List<SksSnapUp> snapups = snapupService.queryJoinRecord(linkSnapUpId);
 
         UserVo joiner;
@@ -174,9 +168,9 @@ public class WxSnapUpController {
     }
 
     /**
-     * 参加团购
+     * 参加秒杀
      *
-     * @param snapupId 团购活动ID
+     * @param snapupId 秒杀活动ID
      * @return 操作结果
      */
     @GetMapping("join")
@@ -204,24 +198,19 @@ public class WxSnapUpController {
     }
 
     /**
-     * 用户开团或入团情况
+     * 用户抢购情况
      *
      * @param userId 用户ID
-     * @param showType 显示类型，如果是0，则是当前用户开的团购；否则，则是当前用户参加的团购
-     * @return 用户开团或入团情况
+     * @return 用户抢购情况
      */
     @GetMapping("my")
-    public Object my(@LoginUser Integer userId, @RequestParam(defaultValue = "0") Integer showType) {
+    public Object my(@LoginUser Integer userId) {
         if (userId == null) {
             return ResponseUtil.unlogin();
         }
 
         List<SksSnapUp> mySnapUps;
-        if (showType == 0) {
-            mySnapUps = snapupService.queryMySnapUp(userId);
-        } else {
-            mySnapUps = snapupService.queryMyJoinSnapUp(userId);
-        }
+        mySnapUps = snapupService.queryMySnapUp(userId);
 
         List<Map<String, Object>> snapupVoList = new ArrayList<>(mySnapUps.size());
 
@@ -231,24 +220,16 @@ public class WxSnapUpController {
         for (SksSnapUp snapup : mySnapUps) {
             order = orderService.findById(userId, snapup.getOrderId());
             rules = rulesService.findById(snapup.getRulesId());
-            creator = userService.findById(snapup.getCreatorUserId());
 
             Map<String, Object> snapupVo = new HashMap<>();
-            //填充团购信息
+            //填充秒杀信息
             snapupVo.put("id", snapup.getId());
             snapupVo.put("snapup", snapup);
             snapupVo.put("rules", rules);
-            snapupVo.put("creator", creator.getNickname());
 
             int linkSnapUpId;
-            // 这是一个团购发起记录
-            if (snapup.getSnapUpId() == 0) {
-                linkSnapUpId = snapup.getId();
-                snapupVo.put("isCreator", creator.getId() == userId);
-            } else {
-                linkSnapUpId = snapup.getSnapUpId();
-                snapupVo.put("isCreator", false);
-            }
+            // 这是一个秒杀记录
+            linkSnapUpId = snapup.getId();
             int joinerCount = snapupService.countSnapUp(linkSnapUpId);
             snapupVo.put("joinerCount", joinerCount + 1);
 

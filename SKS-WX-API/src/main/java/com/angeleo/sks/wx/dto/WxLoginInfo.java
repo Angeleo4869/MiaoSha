@@ -1,5 +1,8 @@
 package com.angeleo.sks.wx.dto;
 
+/**
+ * @author leo
+ */
 public class WxLoginInfo {
     private String code;
     private UserInfo userInfo;

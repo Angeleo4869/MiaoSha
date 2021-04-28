@@ -24,6 +24,7 @@ import java.util.Map;
 
 /**
  * 专题服务
+ * @author leo
  */
 @RestController
 @RequestMapping("/wx/topic")

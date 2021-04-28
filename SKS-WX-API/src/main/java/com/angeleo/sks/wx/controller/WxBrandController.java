@@ -19,6 +19,7 @@ import java.util.List;
 
 /**
  * 专题服务
+ * @author leo
  */
 @RestController
 @RequestMapping("/wx/brand")

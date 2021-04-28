@@ -14,6 +14,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author leo
+ */
 @Service
 public class WxSnapUpRuleService {
     private final Log logger = LogFactory.getLog(WxSnapUpRuleService.class);

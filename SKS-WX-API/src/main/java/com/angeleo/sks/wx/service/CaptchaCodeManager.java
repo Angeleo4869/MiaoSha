@@ -7,6 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 缓存系统中的验证码
+ * @author leo
  */
 public class CaptchaCodeManager {
     private static ConcurrentHashMap<String, CaptchaItem> captchaCodeCache = new ConcurrentHashMap<>();
@@ -49,8 +50,9 @@ public class CaptchaCodeManager {
      */
     public static String getCachedCaptcha(String phoneNumber) {
         //没有这个电话记录
-        if (captchaCodeCache.get(phoneNumber) == null)
+        if (captchaCodeCache.get(phoneNumber) == null) {
             return null;
+        }
 
         //有电话记录但是已经过期
         if (captchaCodeCache.get(phoneNumber).getExpireTime().isBefore(LocalDateTime.now())) {

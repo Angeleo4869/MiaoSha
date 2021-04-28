@@ -20,6 +20,7 @@ import java.util.*;
 
 /**
  * 用户购物车服务
+ * @author leo
  */
 @RestController
 @RequestMapping("/wx/cart")
@@ -36,7 +37,7 @@ public class WxCartController {
     @Autowired
     private SksAddressService addressService;
     @Autowired
-    private SksSnapUpRulesService grouponRulesService;
+    private SksSnapUpRulesService snapupRulesService;
     @Autowired
     private SksCouponService couponService;
     @Autowired
@@ -46,7 +47,6 @@ public class WxCartController {
 
     /**
      * 用户购物车信息
-     *
      * @param userId 用户ID
      * @return 用户购物车信息
      */
@@ -73,9 +73,9 @@ public class WxCartController {
         }
 
         Integer goodsCount = 0;
-        BigDecimal goodsAmount = new BigDecimal(0.00);
+        BigDecimal goodsAmount = new BigDecimal("0.00");
         Integer checkedGoodsCount = 0;
-        BigDecimal checkedGoodsAmount = new BigDecimal(0.00);
+        BigDecimal checkedGoodsAmount = new BigDecimal("0.00");
         for (SksCart cart : cartList) {
             goodsCount += cart.getNumber();
             goodsAmount = goodsAmount.add(cart.getPrice().multiply(new BigDecimal(cart.getNumber())));
@@ -102,7 +102,6 @@ public class WxCartController {
      * <p>
      * 如果已经存在购物车货品，则增加数量；
      * 否则添加新的购物车货品项。
-     *
      * @param userId 用户ID
      * @param cart   购物车商品信息， { goodsId: xxx, productId: xxx, number: xxx }
      * @return 加入购物车操作结果
@@ -404,13 +403,13 @@ public class WxCartController {
      * @return 购物车操作结果
      */
     @GetMapping("checkout")
-    public Object checkout(@LoginUser Integer userId, Integer cartId, Integer addressId, Integer couponId, Integer userCouponId, Integer grouponRulesId) {
+    public Object checkout(@LoginUser Integer userId, Integer cartId, Integer addressId, Integer couponId, Integer userCouponId, Integer snapupRulesId) {
         if (userId == null) {
             return ResponseUtil.unlogin();
         }
 
         // 收货地址
-        SksAddress checkedAddress = null;
+        SksAddress checkedAddress;
         if (addressId == null || addressId.equals(0)) {
             checkedAddress = addressService.findDefault(userId);
             // 如果仍然没有地址，则是没有收货地址
@@ -431,15 +430,15 @@ public class WxCartController {
             }
         }
 
-        // 团购优惠
-        BigDecimal grouponPrice = new BigDecimal(0.00);
-        SksSnapUpRules grouponRules = grouponRulesService.findById(grouponRulesId);
-        if (grouponRules != null) {
-            grouponPrice = grouponRules.getDiscount();
+        // 秒杀优惠
+        BigDecimal snapupPrice = new BigDecimal(0.00);
+        SksSnapUpRules snapupRules = snapupRulesService.findById(snapupRulesId);
+        if (snapupRules != null) {
+            snapupPrice = snapupRules.getDiscount();
         }
 
         // 商品价格
-        List<SksCart> checkedGoodsList = null;
+        List<SksCart> checkedGoodsList;
         if (cartId == null || cartId.equals(0)) {
             checkedGoodsList = cartService.queryByUidAndChecked(userId);
         } else {
@@ -450,18 +449,18 @@ public class WxCartController {
             checkedGoodsList = new ArrayList<>(1);
             checkedGoodsList.add(cart);
         }
-        BigDecimal checkedGoodsPrice = new BigDecimal(0.00);
+        BigDecimal checkedGoodsPrice = new BigDecimal("0.00");
         for (SksCart cart : checkedGoodsList) {
-            //  只有当团购规格商品ID符合才进行团购优惠
-            if (grouponRules != null && grouponRules.getGoodsId().equals(cart.getGoodsId())) {
-                checkedGoodsPrice = checkedGoodsPrice.add(cart.getPrice().subtract(grouponPrice).multiply(new BigDecimal(cart.getNumber())));
+            //  只有当秒杀规格商品ID符合才进行秒杀优惠
+            if (snapupRules != null && snapupRules.getGoodsId().equals(cart.getGoodsId())) {
+                checkedGoodsPrice = checkedGoodsPrice.add(cart.getPrice().subtract(snapupPrice).multiply(new BigDecimal(cart.getNumber())));
             } else {
                 checkedGoodsPrice = checkedGoodsPrice.add(cart.getPrice().multiply(new BigDecimal(cart.getNumber())));
             }
         }
 
         // 计算优惠券可用情况
-        BigDecimal tmpCouponPrice = new BigDecimal(0.00);
+        BigDecimal tmpCouponPrice = new BigDecimal("0.00");
         Integer tmpCouponId = 0;
         Integer tmpUserCouponId = 0;
         int tmpCouponLength = 0;
@@ -473,7 +472,7 @@ public class WxCartController {
             }
 
             tmpCouponLength++;
-            if(tmpCouponPrice.compareTo(coupon.getDiscount()) == -1){
+            if(tmpCouponPrice.compareTo(coupon.getDiscount()) < 0){
                 tmpCouponPrice = coupon.getDiscount();
                 tmpCouponId = coupon.getId();
                 tmpUserCouponId = couponUser.getId();
@@ -509,16 +508,16 @@ public class WxCartController {
         }
 
         // 根据订单商品总价计算运费，满88则免运费，否则8元；
-        BigDecimal freightPrice = new BigDecimal(0.00);
+        BigDecimal freightPrice = new BigDecimal("0.00");
         if (checkedGoodsPrice.compareTo(SystemConfig.getFreightLimit()) < 0) {
             freightPrice = SystemConfig.getFreight();
         }
 
         // 可以使用的其他钱，例如用户积分
-        BigDecimal integralPrice = new BigDecimal(0.00);
+        BigDecimal integralPrice = new BigDecimal("0.00");
 
         // 订单费用
-        BigDecimal orderTotalPrice = checkedGoodsPrice.add(freightPrice).subtract(couponPrice).max(new BigDecimal(0.00));
+        BigDecimal orderTotalPrice = checkedGoodsPrice.add(freightPrice).subtract(couponPrice).max(new BigDecimal("0.00"));
 
         BigDecimal actualPrice = orderTotalPrice.subtract(integralPrice);
 
@@ -527,8 +526,8 @@ public class WxCartController {
         data.put("couponId", couponId);
         data.put("userCouponId", userCouponId);
         data.put("cartId", cartId);
-        data.put("grouponRulesId", grouponRulesId);
-        data.put("grouponPrice", grouponPrice);
+        data.put("snapupRulesId", snapupRulesId);
+        data.put("snapupPrice", snapupPrice);
         data.put("checkedAddress", checkedAddress);
         data.put("availableCouponLength", availableCouponLength);
         data.put("goodsTotalPrice", checkedGoodsPrice);

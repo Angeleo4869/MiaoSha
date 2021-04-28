@@ -39,9 +39,8 @@ public class WxSwagger2Configuration {
         return new ApiInfoBuilder()
                 .title("Sks-WX API")
                 .description("leo嘚小商场API")
-                .termsOfServiceUrl("https://github.com/linlinjava/Sks")
-                .contact("https://github.com/linlinjava/Sks")
-                .version("1.0")
+                .termsOfServiceUrl("https://github.com/Angeleo4869/SecondsKillSystem")
+                .version("0.1.0")
                 .build();
     }
 }

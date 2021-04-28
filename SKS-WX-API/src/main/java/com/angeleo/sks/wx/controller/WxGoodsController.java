@@ -27,6 +27,7 @@ import java.util.concurrent.*;
 
 /**
  * 商品服务
+ * @author leo
  */
 @RestController
 @RequestMapping("/wx/goods")
@@ -141,8 +142,8 @@ public class WxGoodsController {
 			return commentList;
 		};
 
-		//团购信息
-		Callable<List> grouponRulesCallable = () ->rulesService.queryByGoodsId(id);
+		//秒杀信息
+		Callable<List> snapupRulesCallable = () ->rulesService.queryByGoodsId(id);
 
 		// 用户收藏
 		int userHasCollect = 0;
@@ -165,7 +166,7 @@ public class WxGoodsController {
 		FutureTask<List> issueCallableTask = new FutureTask<>(issueCallable);
 		FutureTask<Map> commentsCallableTsk = new FutureTask<>(commentsCallable);
 		FutureTask<SksBrand> brandCallableTask = new FutureTask<>(brandCallable);
-        FutureTask<List> grouponRulesCallableTask = new FutureTask<>(grouponRulesCallable);
+        FutureTask<List> snapupRulesCallableTask = new FutureTask<>(snapupRulesCallable);
 
 		executorService.submit(goodsAttributeListTask);
 		executorService.submit(objectCallableTask);
@@ -173,7 +174,7 @@ public class WxGoodsController {
 		executorService.submit(issueCallableTask);
 		executorService.submit(commentsCallableTsk);
 		executorService.submit(brandCallableTask);
-		executorService.submit(grouponRulesCallableTask);
+		executorService.submit(snapupRulesCallableTask);
 
 		Map<String, Object> data = new HashMap<>();
 
@@ -186,7 +187,7 @@ public class WxGoodsController {
 			data.put("productList", productListCallableTask.get());
 			data.put("attribute", goodsAttributeListTask.get());
 			data.put("brand", brandCallableTask.get());
-			data.put("groupon", grouponRulesCallableTask.get());
+			data.put("snapup", snapupRulesCallableTask.get());
 			//SystemConfig.isAutoCreateShareImage()
 			data.put("share", SystemConfig.isAutoCreateShareImage());
 
