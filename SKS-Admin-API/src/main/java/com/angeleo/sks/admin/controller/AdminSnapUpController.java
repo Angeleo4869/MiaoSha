@@ -29,8 +29,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author leo
+ */
 @RestController
-@RequestMapping("/admin/sanpup")
+@RequestMapping("/admin/snapup")
 @Validated
 public class AdminSnapUpController {
     private final Log logger = LogFactory.getLog(AdminSnapUpController.class);
@@ -40,43 +43,43 @@ public class AdminSnapUpController {
     @Autowired
     private SksGoodsService goodsService;
     @Autowired
-    private SksSnapUpService sanpupService;
+    private SksSnapUpService snapupService;
     @Autowired
     private TaskService taskService;
 
-    @RequiresPermissions("admin:sanpup:read")
+    @RequiresPermissions("admin:snapup:read")
     @RequiresPermissionsDesc(menu = {"推广管理", "秒杀管理"}, button = "详情")
     @GetMapping("/listRecord")
-    public Object listRecord(String sanpupRuleId,
+    public Object listRecord(String snapupRuleId,
                              @RequestParam(defaultValue = "1") Integer page,
                              @RequestParam(defaultValue = "10") Integer limit,
                              @Sort @RequestParam(defaultValue = "add_time") String sort,
                              @Order @RequestParam(defaultValue = "desc") String order) {
-        List<SksSnapUp> sanpupList = sanpupService.querySelective(sanpupRuleId, page, limit, sort, order);
+        List<SksSnapUp> snapupList = snapupService.querySelective(snapupRuleId, page, limit, sort, order);
 
-        List<Map<String, Object>> sanpups = new ArrayList<>();
-        for (SksSnapUp sanpup : sanpupList) {
+        List<Map<String, Object>> snapups = new ArrayList<>();
+        for (SksSnapUp snapup : snapupList) {
             try {
                 Map<String, Object> recordData = new HashMap<>();
-                List<SksSnapUp> subSnapUpList = sanpupService.queryJoinRecord(sanpup.getId());
-                SksSnapUpRules rules = rulesService.findById(sanpup.getRulesId());
+                List<SksSnapUp> subSnapUpList = snapupService.queryJoinRecord(snapup.getId());
+                SksSnapUpRules rules = rulesService.findById(snapup.getRulesId());
                 SksGoods goods = goodsService.findById(rules.getGoodsId());
 
-                recordData.put("sanpup", sanpup);
+                recordData.put("snapup", snapup);
                 recordData.put("subSnapUps", subSnapUpList);
                 recordData.put("rules", rules);
                 recordData.put("goods", goods);
 
-                sanpups.add(recordData);
+                snapups.add(recordData);
             } catch (Exception e) {
                 logger.error(e.getMessage(), e);
             }
         }
 
-        return ResponseUtil.okList(sanpups, sanpupList);
+        return ResponseUtil.okList(snapups, snapupList);
     }
 
-    @RequiresPermissions("admin:sanpup:list")
+    @RequiresPermissions("admin:snapup:list")
     @RequiresPermissionsDesc(menu = {"推广管理", "秒杀管理"}, button = "查询")
     @GetMapping("/list")
     public Object list(String goodsId,
@@ -88,20 +91,20 @@ public class AdminSnapUpController {
         return ResponseUtil.okList(rulesList);
     }
 
-    private Object validate(SksSnapUpRules sanpupRules) {
-        Integer goodsId = sanpupRules.getGoodsId();
+    private Object validate(SksSnapUpRules snapupRules) {
+        Integer goodsId = snapupRules.getGoodsId();
         if (goodsId == null) {
             return ResponseUtil.badArgument();
         }
-        BigDecimal discount = sanpupRules.getDiscount();
+        BigDecimal discount = snapupRules.getDiscount();
         if (discount == null) {
             return ResponseUtil.badArgument();
         }
-        Integer discountMember = sanpupRules.getDiscountMember();
+        Integer discountMember = snapupRules.getDiscountMember();
         if (discountMember == null) {
             return ResponseUtil.badArgument();
         }
-        LocalDateTime expireTime = sanpupRules.getExpireTime();
+        LocalDateTime expireTime = snapupRules.getExpireTime();
         if (expireTime == null) {
             return ResponseUtil.badArgument();
         }
@@ -109,16 +112,16 @@ public class AdminSnapUpController {
         return null;
     }
 
-    @RequiresPermissions("admin:sanpup:update")
+    @RequiresPermissions("admin:snapup:update")
     @RequiresPermissionsDesc(menu = {"推广管理", "秒杀管理"}, button = "编辑")
     @PostMapping("/update")
-    public Object update(@RequestBody SksSnapUpRules sanpupRules) {
-        Object error = validate(sanpupRules);
+    public Object update(@RequestBody SksSnapUpRules snapupRules) {
+        Object error = validate(snapupRules);
         if (error != null) {
             return error;
         }
 
-        SksSnapUpRules rules = rulesService.findById(sanpupRules.getId());
+        SksSnapUpRules rules = rulesService.findById(snapupRules.getId());
         if(rules == null){
             return ResponseUtil.badArgumentValue();
         }
@@ -126,32 +129,32 @@ public class AdminSnapUpController {
             return ResponseUtil.fail(AdminResponseCode.GROUPON_GOODS_OFFLINE, "秒杀已经下线");
         }
 
-        Integer goodsId = sanpupRules.getGoodsId();
+        Integer goodsId = snapupRules.getGoodsId();
         SksGoods goods = goodsService.findById(goodsId);
         if (goods == null) {
             return ResponseUtil.badArgumentValue();
         }
 
-        sanpupRules.setGoodsName(goods.getName());
-        sanpupRules.setPicUrl(goods.getPicUrl());
+        snapupRules.setGoodsName(goods.getName());
+        snapupRules.setPicUrl(goods.getPicUrl());
 
-        if (rulesService.updateById(sanpupRules) == 0) {
+        if (rulesService.updateById(snapupRules) == 0) {
             return ResponseUtil.updatedDataFailed();
         }
 
         return ResponseUtil.ok();
     }
 
-    @RequiresPermissions("admin:sanpup:create")
+    @RequiresPermissions("admin:snapup:create")
     @RequiresPermissionsDesc(menu = {"推广管理", "秒杀管理"}, button = "添加")
     @PostMapping("/create")
-    public Object create(@RequestBody SksSnapUpRules sanpupRules) {
-        Object error = validate(sanpupRules);
+    public Object create(@RequestBody SksSnapUpRules snapupRules) {
+        Object error = validate(snapupRules);
         if (error != null) {
             return error;
         }
 
-        Integer goodsId = sanpupRules.getGoodsId();
+        Integer goodsId = snapupRules.getGoodsId();
         SksGoods goods = goodsService.findById(goodsId);
         if (goods == null) {
             return ResponseUtil.fail(AdminResponseCode.GROUPON_GOODS_UNKNOWN, "秒杀商品不存在");
@@ -160,25 +163,25 @@ public class AdminSnapUpController {
             return ResponseUtil.fail(AdminResponseCode.GROUPON_GOODS_EXISTED, "秒杀商品已经存在");
         }
 
-        sanpupRules.setGoodsName(goods.getName());
-        sanpupRules.setPicUrl(goods.getPicUrl());
-        sanpupRules.setStatus(SnapUpConstant.RULE_STATUS_ON);
-        rulesService.createRules(sanpupRules);
+        snapupRules.setGoodsName(goods.getName());
+        snapupRules.setPicUrl(goods.getPicUrl());
+        snapupRules.setStatus(SnapUpConstant.RULE_STATUS_ON);
+        rulesService.createRules(snapupRules);
 
         LocalDateTime now = LocalDateTime.now();
-        LocalDateTime expire = sanpupRules.getExpireTime();
+        LocalDateTime expire = snapupRules.getExpireTime();
         long delay = ChronoUnit.MILLIS.between(now, expire);
         // 秒杀过期任务
-        taskService.addTask(new SnapUpRuleExpiredTask(sanpupRules.getId(), delay));
+        taskService.addTask(new SnapUpRuleExpiredTask(snapupRules.getId(), delay));
 
-        return ResponseUtil.ok(sanpupRules);
+        return ResponseUtil.ok(snapupRules);
     }
 
-    @RequiresPermissions("admin:sanpup:delete")
+    @RequiresPermissions("admin:snapup:delete")
     @RequiresPermissionsDesc(menu = {"推广管理", "秒杀管理"}, button = "删除")
     @PostMapping("/delete")
-    public Object delete(@RequestBody SksSnapUpRules sanpupRules) {
-        Integer id = sanpupRules.getId();
+    public Object delete(@RequestBody SksSnapUpRules snapupRules) {
+        Integer id = snapupRules.getId();
         if (id == null) {
             return ResponseUtil.badArgument();
         }
